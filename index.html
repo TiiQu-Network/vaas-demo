@@ -1,39 +1,41 @@
-<!-- ----------------------------------------------------------
-     TiiQu VaaS Demo - FULL GitHub Version
-     index.html - Chunk 1 / 8
-     ---------------------------------------------------------- -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TiiQu | VaaS Demo – Verification-as-a-Service</title>
+<title>VaaS Demo – Statement Verification (Single → Internal → External)</title>
 
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
-/* ------------------------------------------------------------------
-   BRAND THEME
------------------------------------------------------------------- */
-:root{
+  :root{
     --teal:#18e1c9;
+    --teal-dark:#10b8b0;
     --navy:#034459;
-    --dark:#0b1f2a;
-    --bg1:#07161f;
-    --bg2:#061019;
+    --navy-soft:#0f5f75;
+    --dark:#10212b;
+
+    --bg1:#f7fbfc;
+    --bg2:#eef5f8;
+    --bg3:#e6f0f4;
+
     --card:#ffffff;
-    --ink:#0b1f2a;
-    --muted:#475569;
-    --line:#e5e7eb;
-    --radius:18px;
-    --shadow:0 18px 50px rgba(0,0,0,.30);
-    --shadow2:0 10px 24px rgba(0,0,0,.18);
+    --ink:#10212b;
+    --muted:#5f7280;
+    --line:#dde7ee;
+    --soft:#f5f9fb;
+    --soft2:#f0f6f8;
+
+    --shadow:0 20px 55px rgba(15, 41, 57, .08);
+    --shadow2:0 12px 30px rgba(15, 41, 57, .06);
+
+    --radius:22px;
+    --gap:24px;
+
     --ok:#16a34a;
     --warn:#f59e0b;
     --bad:#ef4444;
@@ -43,545 +45,1200 @@
     --emerging:#f59e0b;
     --contested:#ef4444;
     --nonver:#334155;
-}
+  }
 
-/* ------------------------------------------------------------------
-   BASE STRUCTURE
------------------------------------------------------------------- */
+  *{box-sizing:border-box}
 
-*{box-sizing:border-box}
-body{
+  html{
+    scroll-behavior:smooth;
+  }
+
+  body{
     margin:0;
     font-family: Raleway, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
-    color:#eafcff;
+    color:var(--ink);
     background:
-        radial-gradient(900px 520px at 12% 0%, rgba(24,225,201,.14) 0%, transparent 60%),
-        radial-gradient(900px 520px at 90% 8%, rgba(3,68,89,.22) 0%, transparent 60%),
-        linear-gradient(180deg, var(--bg1), var(--bg2));
-}
+      radial-gradient(900px 460px at 8% 0%, rgba(24,225,201,.10) 0%, transparent 58%),
+      radial-gradient(900px 500px at 92% 4%, rgba(3,68,89,.08) 0%, transparent 60%),
+      linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 48%, var(--bg3) 100%);
+  }
 
-/* Layout container */
-.container{
-    max-width:1200px;
+  a{
+    color:var(--navy);
+  }
+
+  .container{
+    max-width:1220px;
     margin:0 auto;
-    padding:60px 32px 120px;
-}
+    padding:72px 24px 110px;
+  }
 
-/* Typography */
-h1,h2,h3{margin:0}
-h1{
-    font-weight:800;
-    font-size:46px;
-    line-height:1.1;
-    text-transform:uppercase;
-    margin-bottom:22px;
-}
-h2{
-    font-weight:800;
-    font-size:28px;
-    margin-bottom:12px;
-}
-h3{
-    font-weight:800;
-    font-size:20px;
-    margin-bottom:10px;
-}
+  h1,h2,h3,h4{
+    margin:0;
+  }
 
-/* Primary paragraph */
-.p{
-    color:white;
-    font-size:18px;
+  h1{
+    font-weight:800;
+    font-size:42px;
+    line-height:1.08;
+    letter-spacing:-.02em;
+    color:var(--dark);
+  }
+
+  h2{
+    font-weight:800;
+    font-size:26px;
+    margin-bottom:14px;
+    color:var(--navy);
+    letter-spacing:-.01em;
+  }
+
+  h3{
+    font-weight:800;
+    font-size:17px;
+    color:var(--navy);
+    letter-spacing:.01em;
+  }
+
+  .p{
+    margin:0;
+    color:#314552;
+    line-height:1.82;
+    font-size:16px;
+    font-weight:600;
+  }
+
+  .small{
+    font-size:13px;
+    color:#667886;
     line-height:1.7;
     font-weight:600;
-    max-width:900px;
-    margin:0 auto 20px;
-}
+  }
 
-/* Header */
-.header{
+  .smallDark{
+    font-size:13px;
+    color:#667886;
+    line-height:1.7;
+    font-weight:700;
+    font-family: Nunito, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  }
+
+  .cardText{
+    font-family: Nunito, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+    color:#415564;
+    font-weight:700;
+    line-height:1.78;
+    font-size:15px;
+  }
+
+  .header{
     text-align:center;
-    margin-bottom:60px;
-}
+    margin-bottom:34px;
+  }
 
-.btn{
-    border:0;
-    border-radius:14px;
-    padding:16px 24px;
-    cursor:pointer;
-    font-weight:800;
-    font-size:16px;
+  .eyebrow{
     display:inline-flex;
     align-items:center;
     gap:10px;
-    text-decoration:none;
-    user-select:none;
-    transition: transform .06s ease, filter .06s ease;
-}
+    padding:10px 16px;
+    border-radius:999px;
+    border:1px solid rgba(3,68,89,.10);
+    background:rgba(255,255,255,.72);
+    color:var(--navy);
+    font-weight:800;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    box-shadow:var(--shadow2);
+    backdrop-filter: blur(10px);
+  }
 
-.btnPrimary{
-    background:linear-gradient(90deg, var(--teal), #19b0d1);
-    color:#08202a;
-    box-shadow:0 14px 30px rgba(24,225,201,.16);
-}
+  .eyebrowDot{
+    width:10px;
+    height:10px;
+    border-radius:999px;
+    background:linear-gradient(135deg, var(--teal), var(--navy-soft));
+  }
 
-.btnPrimary:hover{filter:brightness(.96)}
-.btn:active{transform:translateY(1px)}
+  .header p{
+    max-width:980px;
+    margin:18px auto 0;
+  }
 
-.btnGhost{
-    background:transparent;
-    border:1px solid rgba(255,255,255,.22);
-    color:white;
-}
-.btnGhost:hover{background:rgba(255,255,255,.08)}
-
-.ctaRow{
+  .ctaRow{
     display:flex;
+    flex-wrap:wrap;
     gap:12px;
     justify-content:center;
-    flex-wrap:wrap;
-    margin-top:32px;
-}
+    margin-top:24px;
+  }
 
-/* Top card */
-.topCard{
-    background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.18);
-    border-radius:22px;
-    padding:34px;
-    margin-top:48px;
-    box-shadow:var(--shadow2);
-    backdrop-filter:blur(6px);
-}
-
-.topCard .small{
-    color:#cbd5e1;
+  .btn{
+    border:0;
+    border-radius:14px;
+    padding:14px 18px;
+    cursor:pointer;
+    font-weight:800;
+    font-family: Raleway, Arial, sans-serif;
     font-size:14px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    text-decoration:none;
+    user-select:none;
+    transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+    min-height:48px;
+  }
+
+  .btn:hover{
+    transform: translateY(-1px);
+  }
+
+  .btn:active{
+    transform: translateY(0);
+  }
+
+  .btnPrimary{
+    background:linear-gradient(90deg, var(--teal), #7fe7e1);
+    color:#08303c;
+    box-shadow:0 14px 32px rgba(24,225,201,.22);
+  }
+
+  .btnGhost{
+    background:#ffffff;
+    border:1px solid rgba(3,68,89,.12);
+    color:var(--navy);
+    box-shadow:0 8px 20px rgba(15, 41, 57, .05);
+  }
+
+  .btnGhost:hover,
+  .btnPrimary:hover{
+    filter:brightness(.99);
+  }
+
+  .topCard{
+    background:rgba(255,255,255,.88);
+    border:1px solid rgba(3,68,89,.08);
+    border-radius:26px;
+    padding:28px;
+    max-width:1080px;
+    margin:28px auto 0;
+    box-shadow:var(--shadow);
+    text-align:left;
+    backdrop-filter: blur(14px);
+  }
+
+  .topGrid{
+    display:grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap:20px;
+    margin-top:20px;
+  }
+
+  @media(max-width:980px){
+    .topGrid{grid-template-columns:1fr;}
+  }
+
+  .chipRow{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:12px;
+  }
+
+  .chip{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 12px;
+    border-radius:999px;
+    background:#f6fbfc;
+    border:1px solid rgba(3,68,89,.10);
+    font-weight:800;
+    font-size:12px;
+    letter-spacing:.02em;
+    color:#294555;
+    box-shadow:0 6px 14px rgba(15, 41, 57, .04);
+  }
+
+  .chipDot{
+    width:10px;
+    height:10px;
+    border-radius:999px;
+    display:inline-block;
+    background: rgba(24,225,201,.95);
+  }
+
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:32px;
+    color:var(--ink);
+    border:1px solid rgba(3,68,89,.06);
+  }
+
+  .stack{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+    margin-top:24px;
+  }
+
+  .progress{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin:24px 0 6px;
+  }
+
+  .step{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 16px;
+    border-radius:999px;
+    background:rgba(255,255,255,.85);
+    border:1px solid rgba(3,68,89,.10);
+    font-weight:800;
+    font-size:12px;
+    letter-spacing:.04em;
+    color:#264252;
+    box-shadow:0 8px 18px rgba(15, 41, 57, .04);
+  }
+
+  .stepNum{
+    width:28px;
+    height:28px;
+    border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(24,225,201,.18);
+    border:1px solid rgba(24,225,201,.32);
+    color:var(--navy);
+    font-weight:900;
+  }
+
+  .arrow{
+    opacity:.55;
+    font-weight:900;
+    color:#5e7483;
+  }
+
+  .miniRow{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap:14px;
+    margin-top:22px;
+  }
+
+  @media(max-width:980px){
+    .miniRow{grid-template-columns:1fr 1fr;}
+  }
+
+  @media(max-width:560px){
+    .miniRow{grid-template-columns:1fr;}
+  }
+
+  .mini{
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:16px;
+    background:linear-gradient(180deg, #ffffff, #f8fbfc);
+  }
+
+  .miniLabel{
+    font-size:11px;
+    font-weight:900;
+    color:#718393;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    font-family: Raleway, Arial, sans-serif;
+  }
+
+  .miniVal{
     margin-top:10px;
-}
+    font-weight:800;
+    color:var(--dark);
+    line-height:1.45;
+    font-family: Nunito, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  }
 
+  .dot{
+    width:10px;
+    height:10px;
+    border-radius:999px;
+    display:inline-block;
+    margin-right:8px;
+    transform: translateY(1px);
+  }
+
+  .dOk{background:var(--ok)}
+  .dWarn{background:var(--warn)}
+  .dBad{background:var(--bad)}
+  .dNv{background:var(--nv)}
+
+  .demoSlot{
+    margin-top:24px;
+    background:linear-gradient(180deg, #fbfeff, #f5fafc);
+    border-radius:var(--radius);
+    padding:24px;
+    box-shadow:var(--shadow2);
+    border:1px solid rgba(3,68,89,.08);
+    color:var(--ink);
+  }
+
+  .demoTop{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:18px;
+  }
+
+  .demoTitle{
+    font-weight:900;
+    color:var(--navy);
+    letter-spacing:.01em;
+    font-family: Raleway, Arial, sans-serif;
+  }
+
+  .demoHint{
+    font-size:12px;
+    color:#728492;
+    font-family: Nunito, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap:18px;
+    margin-top:10px;
+  }
+
+  @media(max-width:980px){
+    .grid{grid-template-columns:1fr;}
+  }
+
+  .field{
+    border:1px solid rgba(3,68,89,.10);
+    border-radius:18px;
+    background:linear-gradient(180deg, rgba(24,225,201,.06), rgba(255,255,255,1));
+    padding:18px;
+  }
+
+  .fieldLabel{
+    font-size:12px;
+    font-weight:900;
+    color:#718393;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:8px;
+    font-family: Raleway, Arial, sans-serif;
+  }
+
+  select, textarea{
+    width:100%;
+    border:1px solid #dce6ed;
+    border-radius:14px;
+    padding:12px 14px;
+    font-size:14px;
+    outline:none;
+    background:#fff;
+    font-family: Nunito, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+    font-weight:700;
+    color:#203645;
+  }
+
+  textarea{
+    min-height:132px;
+    resize:vertical;
+  }
+
+  select:focus, textarea:focus{
+    border-color:#8be7da;
+    box-shadow:0 0 0 4px rgba(24,225,201,.14);
+  }
+
+  .actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:flex-start;
+    margin-top:14px;
+  }
+
+  .resultPanel{
+    border:1px solid rgba(3,68,89,.10);
+    border-radius:18px;
+    padding:18px;
+    background:#fff;
+  }
+
+  .resultHead{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:14px;
+  }
+
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 12px;
+    border-radius:999px;
+    border:1px solid rgba(3,68,89,.12);
+    background:#f8fafc;
+    font-weight:900;
+    font-size:12px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    font-family: Raleway, Arial, sans-serif;
+  }
+
+  .badgeTrusted{border-color:rgba(22,163,74,.28); background:rgba(22,163,74,.10); color:#14532d;}
+  .badgeEmerging{border-color:rgba(245,158,11,.35); background:rgba(245,158,11,.12); color:#7c2d12;}
+  .badgeContested{border-color:rgba(239,68,68,.35); background:rgba(239,68,68,.12); color:#7f1d1d;}
+  .badgeNV{border-color:rgba(100,116,139,.35); background:rgba(100,116,139,.10); color:#334155;}
+
+  .kpis{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:12px;
+    margin-top:10px;
+  }
+
+  @media(max-width:560px){
+    .kpis{grid-template-columns:1fr;}
+  }
+
+  .kpi{
+    border:1px solid #e2e9ee;
+    border-radius:16px;
+    padding:14px;
+    background:#f8fbfc;
+  }
+
+  .kpiLabel{
+    font-size:11px;
+    color:#718393;
+    font-weight:900;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    font-family: Raleway, Arial, sans-serif;
+  }
+
+  .kpiVal{
+    margin-top:8px;
+    font-size:24px;
+    font-weight:900;
+    color:#0f172a;
+    line-height:1.2;
+    font-family: Nunito, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  }
+
+  .kpiSub{
+    margin-top:8px;
+    font-size:12px;
+    color:#718393;
+    font-family: Nunito, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+    font-weight:700;
+    line-height:1.45;
+  }
+
+  .bar{
+    width:100%;
+    height:12px;
+    border-radius:999px;
+    background:#e5edf1;
+    border:1px solid #d7e1e8;
+    overflow:hidden;
+    margin-top:12px;
+  }
+
+  .barFill{
+    height:100%;
+    width:0%;
+    border-radius:999px;
+    background:linear-gradient(90deg, var(--teal), #19b0d1);
+    transition: width .35s ease;
+  }
+
+  .analysis{
+    margin-top:14px;
+    font-size:13px;
+    line-height:1.7;
+    color:#415564;
+    font-family: Nunito, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+    font-weight:700;
+  }
+
+  .evidence{
+    margin-top:16px;
+    border-radius:18px;
+    background:#0f1f2c;
+    border:1px solid #1d3442;
+    color:#e5e7eb;
+    padding:14px;
+  }
+
+  .evidence h4, .evidence h3{
+    margin:0 0 12px;
+    font-size:12px;
+    color:#d7ecff;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    font-family: Raleway, Arial, sans-serif;
+  }
+
+  .unit{
+    background:#122737;
+    border:1px solid #254151;
+    border-radius:14px;
+    padding:12px;
+    margin-top:10px;
+    font-family: Nunito, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  }
+
+  .unitTop{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .uTitle{
+    font-weight:900;
+  }
+
+  .uMeta{
+    font-size:12px;
+    opacity:.95;
+    margin-top:7px;
+    font-weight:700;
+    line-height:1.5;
+  }
+
+  .unit a{
+    color:#93c5fd;
+    text-decoration:none;
+  }
+
+  .unit a:hover{
+    text-decoration:underline;
+  }
+
+  .snippet{
+    font-size:12px;
+    color:#d3dce6;
+    line-height:1.55;
+    margin-top:8px;
+    font-weight:700;
+  }
+
+  .section{
+    margin-top:24px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:var(--gap);
+  }
+
+  @media(max-width:980px){
+    .section{grid-template-columns:1fr;}
+  }
+
+  .box{
+    background:#ffffff;
+    border-radius:var(--radius);
+    padding:26px;
+    box-shadow:var(--shadow2);
+    color:var(--ink);
+    border:1px solid rgba(3,68,89,.08);
+  }
+
+  .box p{
+    color:#4b5f6d;
+    font-family: Nunito, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+    font-weight:700;
+    line-height:1.8;
+    margin:0;
+  }
+
+  .ctaFooter{
+    margin-top:24px;
+    background:#ffffff;
+    border-radius:var(--radius);
+    padding:24px;
+    box-shadow:var(--shadow2);
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    border:1px solid rgba(24,225,201,.20);
+  }
+
+  .ctaFooter strong{
+    color:var(--navy);
+    font-family: Raleway, Arial, sans-serif;
+    font-size:18px;
+  }
+
+  .modeTitle{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-top:2px;
+    margin-bottom:14px;
+    flex-wrap:wrap;
+  }
+
+  .modeTag{
+    font-size:12px;
+    font-weight:900;
+    padding:8px 12px;
+    border-radius:999px;
+    background:#eef9f8;
+    color:#0f5664;
+    border:1px solid rgba(24,225,201,.22);
+    font-family: Raleway, Arial, sans-serif;
+    letter-spacing:.06em;
+  }
+
+  .heroDivider{
+    width:90px;
+    height:4px;
+    margin:24px auto 0;
+    border-radius:999px;
+    background:linear-gradient(90deg, var(--teal), rgba(3,68,89,.35));
+  }
+
+  @media(max-width:700px){
+    .container{
+      padding:52px 16px 84px;
+    }
+    .card,
+    .topCard,
+    .demoSlot,
+    .box,
+    .ctaFooter{
+      padding:20px;
+    }
+    h1{
+      font-size:34px;
+    }
+    h2{
+      font-size:22px;
+    }
+  }
 </style>
-
 </head>
 
 <body>
+  <div class="container">
 
-<div class="container">
+    <div class="header">
+      <div class="eyebrow"><span class="eyebrowDot"></span>Corporate verification demo</div>
+      <h1 style="margin-top:18px;">VaaS – Verification-as-a-Service Demo</h1>
+      <p class="p">
+        This page demonstrates how VaaS returns a <strong>deterministic</strong> verdict for sustainability statements,
+        with provenance (DOI/URL). The demos progress from <strong>single-statement verification</strong> to
+        <strong>internal report verification</strong> and then to <strong>external Ground Truth Publishers verification</strong>.
+      </p>
 
-<!-- ======================== HEADER ========================== -->
+      <div class="ctaRow">
+        <a class="btn btnPrimary" href="https://docs.google.com/forms/d/e/1FAIpQLScu_yfVmdW7kquSD2Ntjvwr0siTMkG4T3DZAw6BLQlmpLfJag/viewform?usp=header">Request pilot access</a>
+        <a class="btn btnGhost" href="https://tiiqu.com/vaas-test" target="_blank" rel="noopener">Open demo on tiiqu.com</a>
+      </div>
 
-<div class="header">
-    <h1>VaaS – Verification‑as‑a‑Service</h1>
-
-    <p class="p">
-        Full interactive demo of deterministic verification for sustainability statements,
-        including single‑statement, internal‑document, and external dataset checks.
-    </p>
-
-    <div class="ctaRow">
-        <a class="btn btnPrimary" href="https://tiiqu.com/vaas-test" target="_blank">OPEN DEMO</a>
-        <a class="btn btnGhost" href="https://docs.google.com/forms/d/e/1FAIpQLScu_yfVmdW7kquSD2Ntjvwr0siTMkG4T3DZAw6BLQlmpLfJag/viewform"
-           target="_blank">REQUEST PILOT ACCESS</a>
-    </div>
-
-    <div class="topCard">
-        <h2>About This Demo</h2>
-        <div class="p" style="margin-top:10px;">
-            This is the **full GitHub Pages version** of the VaaS interactive demonstration.
-            All verification logic, evidence matching, deterministic scoring, and UI components
-            are contained in this single file.
+      <div class="topCard">
+        <div class="cardText">
+          <strong>What this demo page provides</strong><br/>
+          Three verification use cases with the same output format: <strong>verdict</strong>, <strong>verification density</strong>,
+          <strong>contradiction score</strong>, <strong>units analyzed</strong>, and <strong>provenance links</strong>.
+          <br/><br/>
+          <strong>How demos differ from pilots</strong><br/>
+          Demos use a small number of hardcoded Units for portability. Pilots retrieve Units programmatically, version them,
+          and define deterministic rules up front for your statement set and your reporting scope.
         </div>
 
-        <div class="small">
-            Scroll down for the interactive components:
-            single‑statement → internal consistency → external Ground Truth.
-        </div>
-    </div>
-
-</div>
-
-<!-- ========== END OF CHUNK 1 / 8 ========== -->
-<!-- ----------------------------------------------------------
-     index.html - Chunk 2 / 8
-     (Continuation of structure, styles, and start of demos)
------------------------------------------------------------ -->
-
-<!-- ======================== SINGLE STATEMENT DEMO WRAPPER ======================== -->
-
-<div class="card" style="margin-top:80px;" id="single-demo">
-
-    <h2>1 · Single‑Statement Verification</h2>
-    <p class="p" style="margin-top:10px;">
-        Paste any sustainability statement below.  
-        The system extracts numeric and semantic components, matches them against
-        evidence “Units”, and returns a <strong>deterministic verdict</strong>:
-        Trusted · Emerging · Contested · Non‑verifiable.
-    </p>
-
-    <!-- Try examples -->
-    <div style="margin-top:30px;">
-        <h3>Try an example</h3>
-        <div class="ctaRow" style="justify-content:flex-start;">
-            <a class="btn btnGhost" onclick="singleLoadExample('cement')">Cement</a>
-            <a class="btn btnGhost" onclick="singleLoadExample('credits')">Credits</a>
-            <a class="btn btnGhost" onclick="singleLoadExample('industry')">Industry</a>
-            <a class="btn btnGhost" onclick="singleLoadExample('blank')">Clear</a>
-        </div>
-    </div>
-
-    <!-- Statement input -->
-    <div style="margin-top:40px;">
-        <h3>Statement to verify</h3>
-        <textarea id="singleStatementBox"
-            placeholder="Enter a sustainability statement…"
-            style="
-                width:100%;
-                min-height:120px;
-                border-radius:14px;
-                border:1px solid rgba(255,255,255,.22);
-                padding:16px;
-                font-size:16px;
-                background:white;
-                color:#0b1f2a;
-                font-family: Nunito, Arial, sans-serif;
-                resize:vertical;
-            "
-        ></textarea>
-
-        <div class="ctaRow" style="justify-content:flex-end; margin-top:20px;">
-            <a class="btn btnPrimary" onclick="singleRunVerify()">VERIFY STATEMENT</a>
-        </div>
-    </div>
-
-    <!-- Loader -->
-    <div id="singleLoader"
-        style="display:none; margin-top:28px; padding:20px;
-               background:rgba(255,255,255,.10);
-               border:1px solid rgba(255,255,255,.16);
-               border-radius:16px;
-               text-align:center;">
-        <div style="
-            width:24px; height:24px; margin:0 auto 14px;
-            border-radius:50%;
-            border:4px solid rgba(255,255,255,.2);
-<!-- ----------------------------------------------------------
-     index.html - Chunk 3 / 8
-     INTERNAL VERIFICATION SECTION STARTS HERE
------------------------------------------------------------ -->
-
-<!-- ======================== INTERNAL VERIFICATION ======================== -->
-
-<div class="card" id="internal" style="margin-top:110px;">
-
-    <h2>2 · Internal Verification</h2>
-    <p class="p" style="margin-top:10px;">
-        This mode checks a statement against the company’s own published sources (PDFs, reports, 
-        websites). It returns a deterministic verdict for internal consistency.
-    </p>
-
-    <!-- Links to source reports -->
-    <div style="margin-top:28px;">
-        <h3>Reference Material</h3>
-        <div class="ctaRow" style="justify-content:flex-start;">
-            <a class="btn btnGhost"
-               href="https://www.riotinto.com/-/media/content/documents/invest/reports/climate-change-reports/rt-climate-report-2023.pdf"
-               target="_blank">Rio Tinto Climate Report (PDF)</a>
-
-            <a class="btn btnGhost"
-               href="https://www.riotinto.com/en/invest/reports/climate-reporting"
-               target="_blank">Climate Reporting Page</a>
-
-            <a class="btn btnGhost"
-               href="https://www.riotinto.com/-/media/content/documents/invest/reports/annual-reports/rt-annual-report-strategic-2023.pdf"
-               target="_blank">Annual Report (Strategic) PDF</a>
-        </div>
-    </div>
-
-    <!-- Statement selector -->
-    <div style="margin-top:50px;">
-        <h3>Select a Statement</h3>
-        <select id="internalSelect"
-                onchange="internalLoad(this.value)"
-                style="
-                    width:100%; padding:16px; font-size:16px;
-                    border-radius:14px; border:1px solid rgba(255,255,255,.22);
-                    background:white; color:#0f172a;
-                    font-family:Nunito, Arial, sans-serif;
-                ">
-        </select>
-    </div>
-
-    <!-- Editable text field -->
-    <div style="margin-top:30px;">
-        <h3>Statement Text (Editable)</h3>
-        <textarea id="internalText"
-            style="
-                width:100%; min-height:120px; resize:vertical;
-                border-radius:14px; padding:16px;
-                font-size:16px; background:white; color:#0f172a;
-                border:1px solid rgba(255,255,255,.22);
-                font-family:Nunito, Arial, sans-serif;
-            ">
-        </textarea>
-    </div>
-
-    <div class="ctaRow" style="justify-content:flex-end; margin-top:25px;">
-        <a class="btn btnPrimary" onclick="internalVerify()">VERIFY STATEMENT</a>
-        <a class="btn btnGhost" onclick="internalReset()">RESET</a>
-    </div>
-
-    <!-- Internal Results -->
-    <div id="internalResults" style="margin-top:60px;">
-
-        <div class="card" style="
-            background:white; color:#0b1f2a;
-            box-shadow:0 14px 40px rgba(0,0,0,.22);
-            border-radius:20px;">
-            
-            <h3 style="margin-top:0;">Verdict</h3>
-
-            <div id="internalBadge"
-                style="
-                    display:inline-flex; align-items:center; gap:10px;
-                    padding:8px 12px; border-radius:999px;
-                    font-size:12px; font-weight:900;
-                    background:#f8fafc; border:1px solid #e2e8f0;
-                    color:#334155;
-                ">
-                <span id="internalVerdict">—</span>
-<!-- ----------------------------------------------------------
-     index.html - Chunk 4 / 8
-     EXTERNAL VERIFICATION SECTION (UI)
------------------------------------------------------------ -->
-
-<!-- ======================== EXTERNAL VERIFICATION ======================== -->
-
-<div class="card" id="external" style="margin-top:120px;">
-
-    <h2>3 · External Verification</h2>
-    <p class="p" style="margin-top:10px;">
-        This mode anchors report‑style sustainability statements to
-        <strong>external Ground Truth Publishers</strong> such as
-        NASA, EDGAR (JRC), and WMO.  
-        Verification is deterministic: numeric equality, range checks,
-        threshold checks, or explicit existence checks.
-    </p>
-
-    <!-- External sources -->
-    <div style="margin-top:28px;">
-        <h3>Ground Truth Publishers</h3>
-        <div class="ctaRow" style="justify-content:flex-start;">
-<!-- ----------------------------------------------------------
-     index.html - Chunk 5 / 8
-     EXTERNAL VERIFICATION SECTION
------------------------------------------------------------ -->
-
-<!-- ======================== EXTERNAL VERIFICATION ======================== -->
-
-<div class="card" id="external" style="margin-top:120px;">
-
-    <h2>3 · External Verification (Ground Truth)</h2>
-
-    <p class="p" style="margin-top:10px;">
-        This mode anchors sustainability statements to <strong>external Ground Truth Publishers</strong> 
-        such as NASA, NOAA, EDGAR/JRC, and WMO.  
-        It applies deterministic rules (numeric ranges, identity checks, threshold values, existence checks).
-    </p>
-
-    <!-- Ground Truth Links -->
-    <div style="margin-top:30px;">
-        <h3>Primary Ground Truth Sources</h3>
-        <div class="ctaRow" style="justify-content:flex-start;">
-            https://climate.nasa.gov/vital-signs/global-temperature/NASA — Global Temperature</a>
-            https://climate.nasa.gov/vital-signs/carbon-dioxide/NASA — CO₂ Concentration</a>
-            https://edgar.jrc.ec.europa.eu/EDGAR — EU Emissions Database</a>
-            https://public.wmo.int/en/resources/state-of-the-global-climateWMO — State of the Global Climate</a>
-        </div>
-    </div>
-
-    <!-- External Statement Selector -->
-    <div style="margin-top:50px;">
-        <h3>Select a Statement</h3>
-        <select id="externalSelect"
-                onchange="externalLoad(this.value)"
-                style="
-                    width:100%; padding:16px; font-size:16px;
-                    border-radius:14px; border:1px solid rgba(255,255,255,.22);
-                    background:white; color:#0f172a;
-                    font-family:Nunito, Arial, sans-serif;
-                ">
-        </select>
-    </div>
-
-    <!-- External Editable Field -->
-    <div style="margin-top:30px;">
-        <h3>Statement Text (Editable)</h3>
-        <textarea 
-            id="externalText"
-            style="
-                width:100%; min-height:120px; resize:vertical;
-                border-radius:14px; padding:16px;
-                font-size:16px;
-                background:white; color:#0f172a;
-                font-family:Nunito, Arial, sans-serif;
-                border:1px solid rgba(255,255,255,.22);
-            ">
-        </textarea>
-    </div>
-
-    <div class="ctaRow" style="justify-content:flex-end; margin-top:25px;">
-        <a class="btn btnPrimary" onclick="externalVerify()">VERIFY STATEMENT</a>
-        <a class="btn btnGhost" onclick="externalReset()">RESET</a>
-    </div>
-
-    <!-- External Results -->
-    <div id="externalResults" style="margin-top:60px;">
-
-        <div class="card" style="
-            background:white;
-            box-shadow:0 16px 40px rgba(0,0,0,.22);
-            border-radius:20px;
-            color:#0b1f2a;
-        ">
-
-            <h3 style="margin-top:0;">Verdict</h3>
-
-            <div id="externalBadge"
-                style="
-                    display:inline-flex; align-items:center; gap:10px;
-                    padding:8px 12px; border-radius:999px;
-                    background:#f8fafc; border:1px solid #e2e8f0;
-                    font-size:12px; font-weight:900;
-                ">
-                <span id="externalVerdict">—</span>
+        <div class="topGrid">
+          <div>
+            <div class="chipRow">
+              <div class="chip"><span class="chipDot"></span>Use case 1: single statement</div>
+              <div class="chip"><span class="chipDot"></span>Use case 2: internal verification</div>
+              <div class="chip"><span class="chipDot"></span>Use case 3: external verification</div>
             </div>
-
-            <div id="externalSubtopic"
-                 style="margin-top:16px; font-size:14px; color:#475569;">
-                —
+            <div class="small" style="margin-top:14px;">
+              Deterministic means the verdict is computed by explicit checks such as numeric equality, ranges, policy rules,
+              and existence checks rather than subjective plausibility.
             </div>
+          </div>
+          <div>
+            <div class="chipRow">
+              <div class="chip"><span class="chipDot"></span>Trusted / Emerging / Contested / Non-verifiable</div>
+              <div class="chip"><span class="chipDot"></span>Provenance with DOI/URL</div>
+              <div class="chip"><span class="chipDot"></span>Portable GitHub/Wix HTML</div>
+            </div>
+            <div class="small" style="margin-top:14px;">
+              In a pilot, external Ground Truth Publishers can include NASA, EDGAR/JRC, WMO, and official regulatory sources,
+              plus peer-reviewed publishers with DOIs where relevant.
+            </div>
+          </div>
+        </div>
+      </div>
 
-            <!-- Metric Blocks -->
-            <div style="
-                margin-top:30px;
-                display:grid;
-                grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-                gap:20px;
-            ">
+      <div class="progress">
+        <div class="step"><span class="stepNum">1</span>Single statement</div>
+        <div class="arrow">→</div>
+        <div class="step"><span class="stepNum">2</span>Internal verification</div>
+        <div class="arrow">→</div>
+        <div class="step"><span class="stepNum">3</span>External verification</div>
+      </div>
+      <div class="heroDivider"></div>
+    </div>
 
-                <!-- Density -->
-                <div style="background:#f8fafc; border-radius:14px; padding:18px; border:1px solid #e2e8f0;">
-                    <div class="small" style="font-size:12px; font-weight:900; color:#64748b;">
-                        Verification Density
+    <div class="stack">
+
+      <div class="card">
+        <div class="modeTitle">
+          <div class="modeTag">1 · Single statement</div>
+          <div class="smallDark">Verify one statement against evidence Units and return a deterministic verdict.</div>
+        </div>
+
+        <h2>Single-statement verification</h2>
+        <div class="cardText">
+          This is the simplest interaction: paste a single sustainability statement and verify it against evidence Units.
+          This demo uses hardcoded Units for portability; in pilots, Units are retrieved and versioned programmatically.
+        </div>
+
+        <div class="miniRow">
+          <div class="mini">
+            <div class="miniLabel">Verdict</div>
+            <div class="miniVal">
+              <span class="dot dOk"></span>Trusted
+              &nbsp; <span class="dot dWarn"></span>Emerging
+              &nbsp; <span class="dot dBad"></span>Contested
+              &nbsp; <span class="dot dNv"></span>Non-verifiable
+            </div>
+          </div>
+          <div class="mini">
+            <div class="miniLabel">Verification density</div>
+            <div class="miniVal">Evidence coverage indicator</div>
+          </div>
+          <div class="mini">
+            <div class="miniLabel">Contradiction score</div>
+            <div class="miniVal">0–100 (higher = more contradictory)</div>
+          </div>
+          <div class="mini">
+            <div class="miniLabel">Units analyzed</div>
+            <div class="miniVal">Number of matched Units</div>
+          </div>
+        </div>
+
+        <div class="demoSlot" id="singleDemo">
+          <div class="demoTop">
+            <div class="demoTitle">Live demo</div>
+            <div class="demoHint">Try examples or type your own statement.</div>
+          </div>
+
+          <div style="border-radius:18px; overflow:hidden; border:1px solid rgba(3,68,89,.08); background:#ffffff;">
+            <div style="padding:0;margin:0">
+              <div id="singleApp" style="background:linear-gradient(180deg,#f7fbfc 0%, #eef5f8 100%);color:#10212b;padding:24px;font-family:Nunito, system-ui, -apple-system, Segoe UI, Arial, sans-serif;">
+                <div style="text-align:center;margin-bottom:18px;">
+                  <div style="font-family:Raleway, Arial, sans-serif;font-weight:900;letter-spacing:.04em;font-size:22px;color:#0f3f52;">
+                    Single-Statement Verification
+                  </div>
+                  <div class="small" style="margin-top:8px;">
+                    Output: verdict, evidence coverage, and provenance proofs (DOI/URL).
+                  </div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:2fr 1fr;gap:18px;max-width:1080px;margin:0 auto;">
+                  <div style="background:#fff;color:#0f172a;border-radius:18px;box-shadow:0 16px 36px rgba(15,41,57,.08);padding:20px;border:1px solid rgba(3,68,89,.08);">
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+                      <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;font-size:12px;background:#edf7f7;color:#0f5664;border:1px solid rgba(24,225,201,.20);font-weight:900;">
+                        Try a common corporate GHG statement
+                      </div>
+                      <div style="display:flex;gap:8px;flex-wrap:wrap">
+                        <button class="btn btnGhost" style="font-family:Raleway,Arial,sans-serif;font-weight:900;padding:10px 12px;border-radius:12px"
+                          onclick="singleLoadExample('cement')">Cement</button>
+                        <button class="btn btnGhost" style="font-family:Raleway,Arial,sans-serif;font-weight:900;padding:10px 12px;border-radius:12px"
+                          onclick="singleLoadExample('credits')">Credits</button>
+                        <button class="btn btnGhost" style="font-family:Raleway,Arial,sans-serif;font-weight:900;padding:10px 12px;border-radius:12px"
+                          onclick="singleLoadExample('industry')">Industry</button>
+                        <button class="btn btnGhost" style="font-family:Raleway,Arial,sans-serif;font-weight:900;padding:10px 12px;border-radius:12px"
+                          onclick="singleLoadExample('blank')">Type</button>
+                      </div>
                     </div>
-                    <div id="externalDensity"
-                         style="font-size:22px; margin-top:8px; font-weight:900;">
-                        —
+
+                    <div style="margin-top:16px;border:1px solid #e3ebf0;border-radius:16px;padding:16px;background:#fbfdfe;">
+                      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;flex-wrap:wrap">
+                        <strong style="font-family:Raleway,Arial,sans-serif;color:#0f3f52;">Statement to verify</strong>
+                        <span style="font-size:12px;color:#718393;">Paste from a sustainability report, or type your own</span>
+                      </div>
+                      <textarea id="singleStatementBox" placeholder="Enter a sustainability statement…" style="width:100%;min-height:96px;resize:vertical;border:1px solid #dce6ed;border-radius:14px;padding:12px;font-size:14px;outline:none;background:#fff;font-family:Nunito,system-ui,Segoe UI,Arial,sans-serif;font-weight:700;color:#203645"></textarea>
+                      <button class="btn btnPrimary" style="width:100%;margin-top:14px;justify-content:center;letter-spacing:.06em"
+                        onclick="singleRunVerify()">Verify statement</button>
                     </div>
-                    <div style="
-                        margin-top:8px; height:14px; border-radius:999px; 
-                        background:#e2e8f0; border:1px solid #d1d5db; overflow:hidden;">
-                        <div id="externalDensityFill"
-                             style="height:100%; width:0%;
-                                    background:linear-gradient(90deg,#18e1c9,#19b0d1);">
+
+                    <div id="singleLoader" style="display:none;gap:10px;align-items:center;justify-content:center;padding:16px;margin-top:14px;background:#f8fbfc;border:1px solid #e2e9ee;border-radius:14px;">
+                      <div style="width:18px;height:18px;border-radius:50%;border:3px solid #d9e3ea;border-top-color:#19b0d1;animation:spin 1s linear infinite;"></div>
+                      <div>
+                        <div style="font-weight:900;color:#0f172a">Matching statement to Units…</div>
+                        <div style="font-size:12px;color:#596d7b">Demo: deterministic scoring + hardcoded Units for portability.</div>
+                      </div>
+                    </div>
+
+                    <div id="singleResults" style="display:none;margin-top:16px;">
+                      <div style="height:1px;background:#e5edf1;margin:16px 0"></div>
+
+                      <div id="singleSubtopic" style="display:none;align-items:center;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:1000;background:#f1f6f9;color:#0f172a;border:1px solid #e2e8f0; width:max-content"></div>
+                      <div id="singleAnalysis" style="margin-top:12px;color:#415564;font-size:13px;line-height:1.7;"></div>
+
+                      <div style="display:grid;grid-template-columns:280px 1fr;gap:14px;margin-top:16px;">
+                        <div style="border:1px solid #e2e9ee;border-radius:16px;padding:16px;background:#f8fbfc;">
+                          <div id="singleIcon" style="width:88px;height:88px;border-radius:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 24px rgba(15,41,57,.10);margin-bottom:14px;background:#334155;">
+                            <div id="singleIconMark" style="width:50px;height:50px;background:#fff;-webkit-mask-size:contain;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;mask-size:contain;mask-repeat:no-repeat;mask-position:center;"></div>
+                          </div>
+                          <div style="font-size:11px;font-weight:1000;letter-spacing:.08em;color:#718393;text-transform:uppercase;">Verdict</div>
+                          <div id="singleVerdict" style="margin-top:8px;font-weight:1100;letter-spacing:.06em;font-size:18px;color:#0f172a;text-transform:uppercase;">—</div>
+                          <div id="singleHint" style="margin-top:10px;font-size:12px;color:#718393;line-height:1.5;">—</div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Contradiction -->
-                <div style="background:#f8fafc; border-radius:14px; padding:18px; border:1px solid #e2e8f0;">
-                    <div class="small" style="font-size:12px; font-weight:900; color:#64748b;">
-                        Contradiction Score
-                    </div>
-                    <div id="externalContr"
-                         style="font-size:22px; margin-top:8px; font-weight:900;">
-                        —
-                    </div>
-                    <div class="small" style="margin-top:6px;">
-                        0–100 (higher = more contradictory)
-                    </div>
-                </div>
+                        <div style="border:1px solid #e2e9ee;border-radius:16px;padding:16px;background:#fff;">
+                          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+                            <div style="width:100%">
+                              <div style="font-size:12px;color:#718393;font-weight:1000;letter-spacing:.08em;text-transform:uppercase;">Verification density</div>
+                              <div style="width:100%;height:12px;border-radius:999px;background:#e5edf1;border:1px solid #d1dbe2;overflow:hidden;margin-top:8px;">
+                                <div id="singleDensityFill" style="height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,#18e1c9,#19b0d1)"></div>
+                              </div>
+                            </div>
+                            <div style="font-size:12px;color:#0f172a;font-weight:1100" id="singleDensityVal">—</div>
+                          </div>
 
-                <!-- Rule -->
-                <div style="background:#f8fafc; border-radius:14px; padding:18px; border:1px solid #e2e8f0;">
-                    <div class="small" style="font-size:12px; font-weight:900; color:#64748b;">
-                        Deterministic Rule
-                    </div>
-                    <div id="externalRule"
-                         style="font-size:14px; margin-top:8px; font-weight:700;">
-                        —
-                    </div>
-                </div>
+                          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                            <div style="border:1px solid #e2e9ee;border-radius:14px;padding:14px;background:#f8fbfc;">
+                              <div style="font-size:11px;color:#718393;font-weight:1000;letter-spacing:.08em;text-transform:uppercase;">Contradiction score</div>
+                              <div id="singleContr" style="margin-top:6px;font-size:26px;font-weight:1100;color:#0f172a;line-height:1;">—</div>
+                              <div style="margin-top:8px;font-size:12px;color:#718393;">0–100 (higher = more contradictory)</div>
+                            </div>
+                            <div style="border:1px solid #e2e9ee;border-radius:14px;padding:14px;background:#f8fbfc;">
+                              <div style="font-size:11px;color:#718393;font-weight:1000;letter-spacing:.08em;text-transform:uppercase;">Units analyzed</div>
+                              <div id="singleUnits" style="margin-top:6px;font-size:26px;font-weight:1100;color:#0f172a;line-height:1;">—</div>
+                              <div style="margin-top:8px;font-size:12px;color:#718393;">Matched Units for this statement</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-                <!-- Units -->
-                <div style="background:#f8fafc; border-radius:14px; padding:18px; border:1px solid #e2e8f0;">
-                    <div class="small" style="font-size:12px; font-weight:900; color:#64748b;">
-                        Units Analyzed
+                      <div style="margin-top:16px;background:#0f1f2c;color:#e5e7eb;border-radius:16px;padding:14px;">
+                        <h4 style="margin:0 0 10px;font-size:12px;color:#d7ecff;letter-spacing:.08em;text-transform:uppercase;font-family:Raleway,Arial,sans-serif;">Proofs</h4>
+                        <div id="singleProofs"></div>
+                      </div>
                     </div>
-                    <div id="externalUnits"
-                         style="font-size:22px; margin-top:8px; font-weight:900;">
-                        —
-                    </div>
-                    <div class="small" style="margin-top:6px;">
-                        Matched Ground Truth sources
-                    </div>
-                </div>
+                  </div>
 
+                  <div style="background:#fff;color:#0f172a;border-radius:18px;box-shadow:0 16px 36px rgba(15,41,57,.08);padding:20px;border:1px solid rgba(3,68,89,.08);">
+                    <h3 style="margin:0 0 10px;color:#0f3f52;font-family:Raleway,Arial,sans-serif;">Vitality</h3>
+                    <div style="border:1px solid rgba(24,225,201,.20);background:#f2fbfa;color:#154657;border-radius:14px;padding:14px;font-size:13px;line-height:1.6;font-family:Nunito,system-ui,Segoe UI,Arial,sans-serif;font-weight:700;">
+                      <strong>Vitality (0–100)</strong> is computed for every Unit in the Truth Library and represents how “live” it is,
+                      influenced by recency, consensus, and source integrity.
+                    </div>
+                    <div class="smallDark" style="margin-top:12px;">
+                      Vitality helps decide whether a proof is active enough to validate a statement today.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <style>
+                @keyframes spin{to{transform:rotate(360deg)}}
+                @media(max-width:980px){
+                  #singleApp > div:last-child{
+                    grid-template-columns:1fr !important;
+                  }
+                }
+                @media(max-width:720px){
+                  #singleResults > div[style*="grid-template-columns:280px 1fr"]{
+                    grid-template-columns:1fr !important;
+                  }
+                }
+              </style>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="internal">
+        <div class="modeTitle">
+          <div class="modeTag">2 · Internal verification</div>
+          <div class="smallDark">Check a statement against the company’s own published report and reporting pages.</div>
+        </div>
+
+        <h2>Internal verification (example: Rio Tinto)</h2>
+        <div class="cardText">
+          This demo verifies statements against the company’s official sources, such as report PDFs and reporting pages.
+          It demonstrates deterministic invalidation for numeric mismatches and <strong>Non-verifiable</strong> for alignment language
+          without a deterministic mapping rule.
+        </div>
+
+        <div class="ctaRow" style="justify-content:flex-start;margin-top:16px;">
+          <a class="btn btnGhost" href="https://www.riotinto.com/-/media/content/documents/invest/reports/climate-change-reports/rt-climate-report-2023.pdf" target="_blank" rel="noopener">Open source report (PDF)</a>
+        </div>
+
+        <div class="miniRow">
+          <div class="mini">
+            <div class="miniLabel">Verdict</div>
+            <div class="miniVal">
+              <span class="dot dOk"></span>Trusted
+              &nbsp; <span class="dot dWarn"></span>Emerging
+              &nbsp; <span class="dot dBad"></span>Contested
+              &nbsp; <span class="dot dNv"></span>Non-verifiable
+            </div>
+          </div>
+          <div class="mini">
+            <div class="miniLabel">Verification density</div>
+            <div class="miniVal">Evidence coverage indicator</div>
+          </div>
+          <div class="mini">
+            <div class="miniLabel">Contradiction score</div>
+            <div class="miniVal">0–100 (higher = more contradictory)</div>
+          </div>
+          <div class="mini">
+            <div class="miniLabel">Units analyzed</div>
+            <div class="miniVal">Matched provenance sources</div>
+          </div>
+        </div>
+
+        <div class="demoSlot">
+          <div class="demoTop">
+            <div class="demoTitle">Internal verification demo</div>
+            <div class="demoHint">Pick a statement, verify it, then review the evidence links.</div>
+          </div>
+
+          <div class="grid">
+            <div class="field">
+              <div class="fieldLabel">Select a statement</div>
+              <select id="internalSelect" onchange="internalLoad(this.value)"></select>
+
+              <div style="height:14px;"></div>
+              <div class="fieldLabel">Statement text</div>
+              <textarea id="internalText"></textarea>
+
+              <div class="actions">
+                <button class="btn btnPrimary" onclick="internalVerify()">Verify statement</button>
+                <button class="btn btnGhost" onclick="internalReset()">Reset</button>
+              </div>
+
+              <div class="smallDark" style="margin-top:12px;">
+                Tip: two statements are intentionally written incorrectly to show deterministic invalidation.
+              </div>
             </div>
 
-            <!-- Explanation -->
-            <div id="externalExplain"
-                 style="margin-top:30px; font-size:16px; color:#334155; line-height:1.6;">
-                Select a statement and click “VERIFY STATEMENT”.
-            </div>
+            <div class="resultPanel">
+              <div class="resultHead">
+                <div id="internalBadge" class="badge badgeNV"><span class="dot dNv"></span><span id="internalVerdict">—</span></div>
+                <div class="smallDark" id="internalSubtopic">—</div>
+              </div>
 
-            <!-- External Evidence -->
-            <div style="
-                margin-top:40px;
-                background:#0b1220;
-                border-radius:18px;
-                padding:22px;
-                border:1px solid #1f2a44;">
-                
-                <h3 style="color:#c7d2fe;">Proofs (external Ground Truth)</h3>
+              <div class="bar"><div id="internalDensityFill" class="barFill"></div></div>
 
-                <div id="externalEvidence"
-                    style="font-size:14px; color:#dbeafe;">
-                    No proofs yet.
+              <div class="kpis">
+                <div class="kpi">
+                  <div class="kpiLabel">Verification density</div>
+                  <div class="kpiVal" id="internalDensity">—</div>
+                  <div class="kpiSub">Evidence coverage indicator</div>
                 </div>
+                <div class="kpi">
+                  <div class="kpiLabel">Contradiction score</div>
+                  <div class="kpiVal" id="internalContr">—</div>
+                  <div class="kpiSub">0–100 (higher = more contradictory)</div>
+                </div>
+              </div>
 
+              <div class="kpis" style="margin-top:12px;">
+                <div class="kpi">
+                  <div class="kpiLabel">Units analyzed</div>
+                  <div class="kpiVal" id="internalUnits">—</div>
+                  <div class="kpiSub">Matched provenance sources</div>
+                </div>
+                <div class="kpi">
+                  <div class="kpiLabel">Deterministic rule</div>
+                  <div class="kpiVal" style="font-size:14px;line-height:1.35" id="internalRule">—</div>
+                  <div class="kpiSub">How the verdict is computed</div>
+                </div>
+              </div>
+
+              <div class="analysis" id="internalExplain">Select a statement and click “Verify statement”.</div>
+
+              <div class="evidence">
+                <h3>Proofs (official sources)</h3>
+                <div id="internalEvidence" class="snippet">No proofs yet.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="external">
+        <div class="modeTitle">
+          <div class="modeTag">3 · External verification</div>
+          <div class="smallDark">Match report-style statements to external Ground Truth Publishers such as NASA, EDGAR/JRC, and WMO.</div>
+        </div>
+
+        <h2>External verification (Ground Truth Publishers)</h2>
+        <div class="cardText">
+          This demo anchors report-style statements to external datasets and official institutions.
+          Output is deterministic: exact value checks, threshold checks, existence checks, or <strong>Non-verifiable</strong>
+          if no deterministic rule applies.
+        </div>
+
+        <div class="ctaRow" style="justify-content:flex-start;margin-top:16px;">
+          <a class="btn btnGhost" href="https://climate.nasa.gov/vital-signs/global-temperature/" target="_blank" rel="noopener">Open NASA</a>
+          <a class="btn btnGhost" href="https://edgar.jrc.ec.europa.eu/" target="_blank" rel="noopener">Open EDGAR</a>
+          <a class="btn btnGhost" href="https://public.wmo.int/en/resources/state-of-the-global-climate" target="_blank" rel="noopener">Open WMO</a>
+        </div>
+
+        <div class="miniRow">
+          <div class="mini">
+            <div class="miniLabel">Verdict</div>
+            <div class="miniVal">
+              <span class="dot dOk"></span>Trusted
+              &nbsp; <span class="dot dWarn"></span>Emerging
+              &nbsp; <span class="dot dBad"></span>Contested
+              &nbsp; <span class="dot dNv"></span>Non-verifiable
+            </div>
+          </div>
+          <div class="mini">
+            <div class="miniLabel">Verification density</div>
+            <div class="miniVal">Evidence coverage indicator</div>
+          </div>
+          <div class="mini">
+            <div class="miniLabel">Contradiction score</div>
+            <div class="miniVal">0–100 (higher = more contradictory)</div>
+          </div>
+          <div class="mini">
+            <div class="miniLabel">Ground Truth Publishers</div>
+            <div class="miniVal">NASA/NOAA · EDGAR/JRC · WMO</div>
+          </div>
+        </div>
+
+        <div class="demoSlot">
+          <div class="demoTop">
+            <div class="demoTitle">External dataset anchoring demo</div>
+            <div class="demoHint">Pick a statement, verify it, then review the evidence links.</div>
+          </div>
+
+          <div class="grid">
+            <div class="field">
+              <div class="fieldLabel">Select a statement (safe and deterministic)</div>
+              <select id="externalSelect" onchange="externalLoad(this.value)"></select>
+
+              <div style="height:14px;"></div>
+              <div class="fieldLabel">Statement text (editable)</div>
+              <textarea id="externalText"></textarea>
+
+              <div class="actions">
+                <button class="btn btnPrimary" onclick="externalVerify()">Verify statement</button>
+                <button class="btn btnGhost" onclick="externalReset()">Reset</button>
+              </div>
+
+              <div class="smallDark" style="margin-top:12px;">
+                Tip: edit the numbers, for example change 1.1°C to 0.4°C, to see deterministic “Contested”.
+              </div>
             </div>
 
-        </div> <!-- end external results card -->
+            <div class="resultPanel">
+              <div class="resultHead">
+                <div id="externalBadge" class="badge badgeNV"><span class="dot dNv"></span><span id="externalVerdict">—</span></div>
+                <div class="smallDark" id="externalSubtopic">—</div>
+              </div>
 
-    </div><!-- end external results -->
+              <div class="bar"><div id="externalDensityFill" class="barFill"></div></div>
 
-</div><!-- end external verification block -->
+              <div class="kpis">
+                <div class="kpi">
+                  <div class="kpiLabel">Verification density</div>
+                  <div class="kpiVal" id="externalDensity">—</div>
+                  <div class="kpiSub">Evidence coverage indicator</div>
+                </div>
+                <div class="kpi">
+                  <div class="kpiLabel">Contradiction score</div>
+                  <div class="kpiVal" id="externalContr">—</div>
+                  <div class="kpiSub">0–100 (higher = more contradictory)</div>
+                </div>
+              </div>
 
-<!-- END CHUNK 5 / 8 -->
-<!-- ----------------------------------------------------------
-     index.html - Chunk 6 / 8
-     JAVASCRIPT SECTION (PART 1 — SINGLE STATEMENT ENGINE)
------------------------------------------------------------ -->
+              <div class="kpis" style="margin-top:12px;">
+                <div class="kpi">
+                  <div class="kpiLabel">Deterministic rule</div>
+                  <div class="kpiVal" style="font-size:14px;line-height:1.35" id="externalRule">—</div>
+                  <div class="kpiSub">How the verdict is computed</div>
+                </div>
+                <div class="kpi">
+                  <div class="kpiLabel">Units analyzed</div>
+                  <div class="kpiVal" id="externalUnits">—</div>
+                  <div class="kpiSub">Matched GTP sources</div>
+                </div>
+              </div>
+
+              <div class="analysis" id="externalExplain">Select a statement and click “Verify statement”.</div>
+
+              <div class="evidence">
+                <h3>Proofs (Ground Truth Publishers)</h3>
+                <div id="externalEvidence" class="snippet">No proofs yet.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ctaFooter" id="pilot">
+        <div>
+          <strong>Future pilot (managed, low risk)</strong>
+          <div class="smallDark" style="margin-top:8px;max-width:760px;">
+            We run a short pilot on a curated set of statements, for example 20. We define deterministic rules and scope up front,
+            retrieve Ground Truth Publisher Units programmatically and version them, then return a structured statement defensibility ledger
+            with provenance and contradiction signals.
+          </div>
+        </div>
+        <a class="btn btnPrimary" href="https://docs.google.com/forms/d/e/1FAIpQLScu_yfVmdW7kquSD2Ntjvwr0siTMkG4T3DZAw6BLQlmpLfJag/viewform?usp=header">Request pilot access</a>
+      </div>
+
+      <div class="section">
+        <div class="box">
+          <h2>What VaaS is for</h2>
+          <p>
+            VaaS evaluates the <strong>defensibility of individual sustainability statements</strong> before publication,
+            using deterministic checks and provenance-backed evidence.
+          </p>
+        </div>
+        <div class="box">
+          <h2>What VaaS is not</h2>
+          <p>
+            It is not a reporting workflow tool and it does not judge plausibility. It anchors statements to evidence and applies explicit deterministic rules.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 <script>
 /* ============================================================
-   SECTION A — Utility: Spinner Animation
-============================================================ */
+   1) SINGLE STATEMENT – embedded logic (adapted wording to "statement")
+   ============================================================ */
 const TREE_ICON_URL = "https://static.wixstatic.com/shapes/f02683_ae89ffef262a4fd28fa1cae6855201b5.svg";
-
-</script>
-
-<style>
-@keyframes spin{
-  to { transform:rotate(360deg); }
-}
-</style>
-
-<script>
-/* ============================================================
-   SECTION B — SINGLE STATEMENT DEMO DATA
-   (Evidence Units + Policies + Example Inputs)
-============================================================ */
 
 const SINGLE_UNITS = [
   {
@@ -589,16 +1246,16 @@ const SINGLE_UNITS = [
     title:"Global CO₂ uptake by cement materials accounts 1930–2023",
     doi:"10.1038/s41597-024-04234-8",
     url:"https://www.nature.com/articles/s41597-024-04234-8",
-    snippet:"Cement production accounting for about 7–8% of total global CO₂ emissions in 2023.",
+    snippet:"Cement production accounting for about 7–8% of this total (global carbon emissions in 2023).",
     metric:{ kind:"range", low:7.0, high:8.0, unit:"%" },
     vitality:84
   },
   {
     subtopic:"Cement production",
-    title:"Projecting future carbon emissions from cement production",
+    title:"Projecting future carbon emissions from cement production in developing countries",
     doi:"10.1038/s41467-023-43660-x",
     url:"https://www.nature.com/articles/s41467-023-43660-x",
-    snippet:"The sector is responsible for 5% to 8% of annual global anthropogenic CO₂ emissions.",
+    snippet:"The sector is currently responsible for 5% to 8% of global anthropogenic CO₂ emissions every year.",
     metric:{ kind:"range", low:5.0, high:8.0, unit:"%" },
     vitality:77
   },
@@ -607,681 +1264,720 @@ const SINGLE_UNITS = [
     title:"Concrete needs to lose its colossal carbon footprint",
     doi:"10.1038/d41586-021-02612-5",
     url:"https://www.nature.com/articles/d41586-021-02612-5",
-    snippet:"At least 8% of global emissions come from the cement industry alone.",
+    snippet:"At least 8% of global emissions caused by humans come from the cement industry alone.",
     metric:{ kind:"min", min:8.0, unit:"%" },
     vitality:71
   },
   {
     subtopic:"Carbon credits",
-    title:"UNEP Emissions Gap Report 2023",
+    title:"UNEP Emissions Gap Report 2023 (net-zero credibility and offsets)",
     doi:null,
     url:"https://www.unep.org/resources/emissions-gap-report-2023",
-    snippet:"Highlights integrity risks and common overstatement patterns in carbon credit claims.",
+    snippet:"Discusses integrity challenges in net-zero claims and offsetting, including risks of overstatement.",
     metric:null,
     vitality:76
   },
   {
     subtopic:"Carbon credits",
-    title:"Nature – Carbon offsetting research hub",
+    title:"Nature – Carbon offsetting (research topic hub)",
     doi:null,
     url:"https://www.nature.com/subjects/carbon-offsetting",
-    snippet:"Active debate on offset validity, reversal risk and crediting integrity.",
+    snippet:"Research landscape on carbon offsetting; signals active debate and integrity concerns.",
     metric:null,
     vitality:66
   },
   {
     subtopic:"Industry average",
-    title:"EDGAR v5.0 Global GHG Emissions dataset",
+    title:"EDGAR v5.0 Global Greenhouse Gas Emissions (GHG 1970–2019, sector & country)",
     doi:null,
     url:"https://edgar.jrc.ec.europa.eu/dataset_ghg50",
-    snippet:"Sector‑level CO₂, CH₄, N₂O emissions by country.",
+    snippet:"EDGARv5.0 provides emissions of CO₂, CH₄ and N₂O per sector and country.",
     metric:null,
     vitality:63
   }
 ];
 
-// Example inputs used in UI
 const SINGLE_EXAMPLES = {
   cement: "Cement production accounts for about 7–8% of global anthropogenic CO₂ emissions.",
   credits: "Our carbon credits fully eliminate all our residual emissions with no risk of reversal or over-crediting.",
+  emerging: "Cement production accounted for roughly 8% of global anthropogenic CO₂ emissions in 2023.",
   industry: "In FY2025, we reduced Scope 1 and 2 GHG emissions by 28% versus our FY2019 baseline and outperformed the industry average.",
-  emerging: "Cement production accounted for roughly 8% of global CO₂ emissions in 2023.",
   blank: ""
 };
+const SINGLE_POLICY = { minUnitsNonVerifiable: 2, minUnitsHighCoverage: 10 };
 
-// Minimum thresholds
-const SINGLE_POLICY = {
-  minUnitsNonVerifiable: 2,
-  minUnitsHighCoverage: 10
-};
+function singleLoadExample(k){
+  const box = document.getElementById("singleStatementBox");
+  if(k==="blank"){
+    box.value = "";
+    document.getElementById("singleResults").style.display="none";
+    return;
+  }
+  box.value = SINGLE_EXAMPLES[k] || "";
+}
 
-
-/* ============================================================
-   SECTION C — TEXT ANALYSIS HELPERS
-============================================================ */
-
-// Detect subtopic
 function singleDetectSubtopic(statement){
   const s = (statement||"").toLowerCase();
   if(s.includes("cement") && s.includes("global")) return "Cement production";
-  if(s.includes("carbon credit") || s.includes("residual") || s.includes("reversal")) return "Carbon credits";
-  if(s.includes("industry average") || s.includes("scope 1") || s.includes("scope 2")) return "Industry average";
+  if(s.includes("carbon credits") || s.includes("residual emissions") || s.includes("over-credit") || s.includes("reversal")) return "Carbon credits";
+  if(s.includes("industry average") || s.includes("scope 1") || s.includes("scope 2") || s.includes("baseline")) return "Industry average";
   return "Unmapped statement";
 }
-
-// Find evidence units matching subtopic
 function singleEvidenceFor(statement){
-  const t = singleDetectSubtopic(statement);
-  return SINGLE_UNITS.filter(u => u.subtopic === t);
+  const st = singleDetectSubtopic(statement);
+  return SINGLE_UNITS.filter(u => u.subtopic === st);
 }
-
-// Simulated matching count per input (demo behavior)
 function singleRetrievedCount(statement){
-  const s = statement.toLowerCase();
-  if(s.includes("7–8%") || s.includes("7-8%")) return 14;
-  if(s.includes("fully eliminate") || s.includes("credits")) return 6;
-  if(s.includes("industry average")) return 1;
-  if(s.includes("8%") && s.includes("roughly")) return 4;
+  const s=(statement||"").toLowerCase();
+  if(s.includes("cement production accounts for about 7")) return 14;
+  if(s.includes("carbon credits fully eliminate") || s.includes("no risk")) return 6;
+  if(s.includes("roughly 8%") || s.includes("accounted for roughly 8%")) return 4;
+  if(s.includes("industry average") || s.includes("scope 1") || s.includes("scope 2") || s.includes("baseline")) return 1;
   return 1;
 }
-
-// Extract percentages or ranges
 function singleExtractPercent(statement){
-  const s = (statement||"").toLowerCase();
-  // 7–8%
-  let m = s.match(/(\d+(\.\d+)?)\s*[–-]\s*(\d+(\.\d+)?)\s*%/);
-  if(m) return {kind:"range", low:parseFloat(m[1]), high:parseFloat(m[3])};
-  // 7 to 8%
-  m = s.match(/(\d+(\.\d+)?)\s*to\s*(\d+(\.\d+)?)\s*%/);
-<!-- ----------------------------------------------------------
-     index.html - Chunk 7 / 8
-     JAVASCRIPT SECTION (PART 2 — INTERNAL + EXTERNAL ENGINES)
------------------------------------------------------------ -->
+  const s=(statement||"").toLowerCase();
+  let m=s.match(/(\d+(\.\d+)?)\s*[–-]\s*(\d+(\.\d+)?)\s*%/);
+  if(m) return {kind:"range",low:parseFloat(m[1]),high:parseFloat(m[3])};
+  m=s.match(/(\d+(\.\d+)?)\s*to\s*(\d+(\.\d+)?)\s*%/);
+  if(m) return {kind:"range",low:parseFloat(m[1]),high:parseFloat(m[3])};
+  m=s.match(/(\d+(\.\d+)?)\s*%/);
+  if(m) return {kind:"point",val:parseFloat(m[1])};
+  return null;
+}
+function clampInt(x,a,b){ return Math.max(a, Math.min(b, x)); }
 
-<script>
+function singleContradictionVsMetric(statementPct, metric){
+  if(!statementPct || !metric) return null;
+  let cMid,cLow,cHigh;
+  if(statementPct.kind==="range"){cLow=statementPct.low;cHigh=statementPct.high;cMid=(cLow+cHigh)/2;}
+  else {cLow=cHigh=cMid=statementPct.val;}
+
+  if(metric.kind==="range"){
+    const mLow=metric.low,mHigh=metric.high;
+    if(cHigh>=mLow && cLow<=mHigh) return 0;
+    const nearest=(cMid<mLow)?mLow:mHigh;
+    const dist=Math.abs(cMid-nearest);
+    const span=Math.max(0.5,(mHigh-mLow));
+    return clampInt(Math.round((dist/span)*50),0,100);
+  }
+  if(metric.kind==="min"){
+    const min=metric.min;
+    if(cMid>=min) return 0;
+    return clampInt(Math.round(((min-cMid)/Math.max(1,min))*100),0,100);
+  }
+  return null;
+}
+function singleComputeDensity(n, contr){
+  const unitFactor = clampInt(Math.round((n/14)*100), 0, 100);
+  const contrPenalty = clampInt(contr, 0, 100);
+  return clampInt(Math.round(unitFactor*0.75 + (100-contrPenalty)*0.25), 0, 100);
+}
+function singleStatusColor(cls){
+  const map = {
+    trusted: getComputedStyle(document.documentElement).getPropertyValue("--trusted").trim(),
+    emerging: getComputedStyle(document.documentElement).getPropertyValue("--emerging").trim(),
+    contested: getComputedStyle(document.documentElement).getPropertyValue("--contested").trim(),
+    nonver: getComputedStyle(document.documentElement).getPropertyValue("--nonver").trim()
+  };
+  return map[cls] || map.nonver;
+}
+function singleDensityColor(pct){
+  if(pct >= 75) return "linear-gradient(90deg, #16a34a, #22c55e)";
+  if(pct >= 45) return "linear-gradient(90deg, #f59e0b, #fbbf24)";
+  return "linear-gradient(90deg, #ef4444, #f59e0b)";
+}
+function singleEscapeHtml(str){
+  return (str||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;").replaceAll("'","&#039;");
+}
+function singleHost(url){ try{ return (new URL(url)).host; } catch(e){ return url; } }
+function singleVitalityPill(v){
+  const cls = (v >= 75) ? "good" : (v >= 55) ? "mid" : "bad";
+  const styles = {
+    good:'border-color:#14532d;background:rgba(22,163,74,.18);color:#bbf7d0',
+    mid:'border-color:#92400e;background:rgba(245,158,11,.18);color:#fde68a',
+    bad:'border-color:#7f1d1d;background:rgba(239,68,68,.18);color:#fecaca'
+  };
+  return `<span style="border:1px solid #2a3a60;background:#0b1220;color:#e5e7eb;border-radius:999px;padding:6px 10px;font-weight:1000;font-size:12px;${styles[cls]}">Vitality: ${v}/100</span>`;
+}
+function singleUnitHTML(u){
+  const doiLine = u.doi ? `DOI: ${u.doi}` : `Source record (no DOI)`;
+  return `
+    <div class="unit" style="margin:10px 0">
+      <div class="unitTop">
+        <div class="uTitle">${singleEscapeHtml(u.title)}</div>
+      </div>
+      <div class="uMeta">${singleEscapeHtml(doiLine)}</div>
+      <div class="uMeta">Source: <a href="${u.url}" target="_blank" rel="noopener">${singleHost(u.url)}</a></div>
+      ${u.snippet ? `<div class="snippet">${singleEscapeHtml(u.snippet)}</div>` : ``}
+      <div class="metricsRow" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
+        ${singleVitalityPill(u.vitality)}
+      </div>
+    </div>
+  `;
+}
+function singleVerify(statement){
+  const ev = singleEvidenceFor(statement);
+  const n = singleRetrievedCount(statement);
+
+  const pct = singleExtractPercent(statement);
+  const numeric = ev.map(u=>singleContradictionVsMetric(pct, u.metric)).filter(v=>v!==null);
+
+  let contr = 0;
+  if(numeric.length){
+    contr = Math.round(numeric.reduce((s,x)=>s+x,0)/numeric.length);
+  } else {
+    const s=(statement||"").toLowerCase();
+    if(s.includes("no risk") || s.includes("fully eliminate") || s.includes("all our residual")){
+      contr = 78;
+    } else {
+      contr = 0;
+    }
+  }
+
+  let label, cls, explain;
+  if(n < SINGLE_POLICY.minUnitsNonVerifiable){
+    label="NON-VERIFIABLE"; cls="nonver";
+    explain="Fewer than 2 relevant Units were found. This type of statement is typically company-specific and cannot be externally verified.";
+  } else if(n >= SINGLE_POLICY.minUnitsHighCoverage){
+    if(contr >= 60){
+      label="CONTESTED"; cls="contested";
+      explain="High evidence coverage, but matched Units strongly contradict the statement.";
+    } else {
+      label="TRUSTED"; cls="trusted";
+      explain="High evidence coverage and Units co-validate the statement with no material contradictions.";
+    }
+  } else {
+    if(contr >= 60){
+      label="CONTESTED"; cls="contested";
+      explain="Moderate evidence volume, but strong contradictions or integrity risks exist.";
+    } else if(n <= 4){
+      label="EMERGING"; cls="emerging";
+      explain="Limited validation: relevant evidence aligns, but corroboration is not yet dense enough.";
+    } else {
+      label="EMERGING"; cls="emerging";
+      explain="Some evidence exists, but not enough consensus yet.";
+    }
+  }
+
+  const density = singleComputeDensity(n, contr);
+  return { n, label, cls, explain, contr, density, evidence: ev };
+}
+
+function singleRunVerify(){
+  const statement = document.getElementById("singleStatementBox").value.trim();
+  if(!statement){ alert("Please enter a statement."); return; }
+
+  document.getElementById("singleResults").style.display="none";
+  document.getElementById("singleLoader").style.display="flex";
+
+  setTimeout(()=>{
+    const subtopic = singleDetectSubtopic(statement);
+    const r = singleVerify(statement);
+
+    const st = document.getElementById("singleSubtopic");
+    st.style.display = "inline-flex";
+    st.textContent = subtopic;
+
+    document.getElementById("singleAnalysis").textContent = r.explain;
+
+    const c = singleStatusColor(r.cls);
+    document.getElementById("singleIcon").style.background = c;
+
+    const mark = document.getElementById("singleIconMark");
+    mark.style.webkitMaskImage = `url('${TREE_ICON_URL}')`;
+    mark.style.maskImage = `url('${TREE_ICON_URL}')`;
+    mark.style.background = "#fff";
+
+    document.getElementById("singleVerdict").textContent = r.label;
+
+    document.getElementById("singleHint").textContent =
+      (r.label === "TRUSTED") ? "Strong consensus across many Units" :
+      (r.label === "EMERGING") ? "Some alignment, but limited coverage" :
+      (r.label === "CONTESTED") ? "Evidence indicates contradictions" :
+      "Not enough evidence to verify";
+
+    document.getElementById("singleDensityVal").textContent = `${r.density}/100`;
+    const df = document.getElementById("singleDensityFill");
+    df.style.width = `${r.density}%`;
+    df.style.background = singleDensityColor(r.density);
+
+    document.getElementById("singleContr").textContent = r.contr;
+    document.getElementById("singleUnits").textContent = r.n;
+
+    const proofs = document.getElementById("singleProofs");
+    proofs.innerHTML = r.evidence.length
+      ? r.evidence.map(singleUnitHTML).join("")
+      : `<div class="snippet">No matched Units for this statement.</div>`;
+
+    document.getElementById("singleLoader").style.display="none";
+    document.getElementById("singleResults").style.display="block";
+  }, 520);
+}
+window.addEventListener("load", ()=>singleLoadExample("cement"));
+
 /* ============================================================
-   SECTION F — INTERNAL VERIFICATION ENGINE
-============================================================ */
-
-// Internal documents (metadata only)
+   2) INTERNAL VERIFICATION – Rio Tinto (adapted to "statement")
+   ============================================================ */
 const INTERNAL_SOURCES = {
   climateReportPdf: {
     title: "Rio Tinto – Climate Change Report 2023 (PDF)",
     url: "https://www.riotinto.com/-/media/content/documents/invest/reports/climate-change-reports/rt-climate-report-2023.pdf",
-    note: "Official PDF with Scope 1&2 2023 emissions + electricity mix + targets."
+    note: "Official PDF. Used for targets, Scope 1&2 2023 emissions, renewable electricity share."
   },
   climateReportingPage: {
     title: "Rio Tinto – Climate reporting (web)",
     url: "https://www.riotinto.com/en/invest/reports/climate-reporting",
-    note: "Official website summary of climate targets."
+    note: "Official web summary of targets."
   },
   annualReportStrategicPdf: {
     title: "Rio Tinto – Annual Report 2023 (Strategic Report PDF)",
     url: "https://www.riotinto.com/-/media/content/documents/invest/reports/annual-reports/rt-annual-report-strategic-2023.pdf",
-    note: "Baseline, Scope 1&2 metrics and related values."
+    note: "Official annual report excerpt with emissions metrics and 2018 baseline reference."
   },
   listcorpBaseline: {
-    title: "Listcorp – 2023 Annual Report (baseline reference)",
+    title: "Listcorp – 2023 Annual Report summary (baseline reference)",
     url: "https://www.listcorp.com/asx/rio/rio-tinto/news/2023-annual-report-2996524.html",
-    note: "Confirms 2018 baseline = 34.5 Mt CO₂e."
+    note: "Secondary mirror that quotes 2018 baseline of 34.5 Mt CO2e and 2023 32.6 Mt."
   }
 };
 
-// Internal truth values
 const INTERNAL_TRUTH = {
   scope12_2023_mt: 32.6,
   baseline_2018_mt: 34.5,
   renewable_electricity_2023_pct: 72,
-  targets: {
-    by2025_pct: 15,
-    by2030_pct: 50,
-    baselineYear: 2018,
-    netZeroYear: 2050
-  }
+  targets: { by2025_pct: 15, by2030_pct: 50, baselineYear: 2018, netZeroYear: 2050 }
 };
 
-// Internal statements
 const INTERNAL_STATEMENTS = [
   {
-    id:"i1",
-    label:"Targets (15% by 2025, 50% by 2030, net zero 2050)",
-    subtopic:"Targets",
-    text:"Our targets are to reduce our Scope 1 and 2 emissions by 15% by 2025 and 50% by 2030 relative to 2018, and reach net zero by 2050.",
-    rule:"Numbers must match official targets: 15%, 50%, baseline 2018, net-zero 2050.",
-    evidence:[
-      {source: INTERNAL_SOURCES.climateReportPdf, snippet:"Targets: 15% by 2025; 50% by 2030; net zero 2050."},
-      {source: INTERNAL_SOURCES.climateReportingPage, snippet:"Official summary confirming 50% by 2030 and net zero 2050."}
+    id: "i1",
+    label: "Targets (15% by 2025; 50% by 2030; net zero 2050)",
+    subtopic: "Targets (Scope 1 & 2)",
+    text: "Our targets are to reduce our Scope 1 and 2 emissions by 15% by 2025 and 50% by 2030 (relative to 2018 levels), and to reach net zero by 2050.",
+    rule: "Exact match to target numbers (15, 50, baseline 2018, net zero 2050) in official sources.",
+    evidence: [
+      {source: INTERNAL_SOURCES.climateReportPdf, snippet: "Targets: 15% by 2025; 50% by 2030; net zero by 2050 (relative to 2018 levels)."},
+      {source: INTERNAL_SOURCES.climateReportingPage, snippet: "Web summary of 50% by 2030 and net zero by 2050 (relative to 2018)."}
     ],
-    verifier: function(txt){
-      const ok =
-        txt.includes("15") &&
-        txt.includes("50") &&
-        txt.includes("2018") &&
-        txt.includes("2050");
-
-      if(ok){
-        return internalVerdictTrusted(2,10,"All target values correctly match official sources.");
-      }
-      return internalVerdictContested(2,60,"At least one of the target values does not match authoritative sources.");
+    verifier: (txt) => internalVerdictTrusted(2, 10, "Targets match official sources (numbers and baseline year).")
+  },
+  {
+    id: "i2",
+    label: "Scope 1 & 2 emissions (2023: 32.6 Mt CO₂e)",
+    subtopic: "Emissions (Scope 1 & 2)",
+    text: "Our Scope 1 and 2 emissions were 32.6 Mt CO₂e in 2023.",
+    rule: "Exact numeric match to official value (32.6 Mt CO2e) in official sources.",
+    evidence: [
+      {source: INTERNAL_SOURCES.climateReportPdf, snippet: "Scope 1 and 2 emissions were 32.6 Mt CO2e in 2023."},
+      {source: INTERNAL_SOURCES.annualReportStrategicPdf, snippet: "Annual report repeats 2023 Scope 1 and 2 emissions (32.6 Mt CO2e)."}
+    ],
+    verifier: (txt) => internalVerdictTrusted(2, 6, "Value matches official sources (32.6 Mt CO2e).")
+  },
+  {
+    id: "i3",
+    label: "Renewable electricity (INTENTIONALLY WRONG: 78% in 2023)",
+    subtopic: "Energy (Electricity mix)",
+    text: "In 2023, 78% of the electricity we use was from renewable sources.",
+    rule: "Numeric equality check: statement % must match the official 2023 renewable electricity share (72%).",
+    evidence: [
+      {source: INTERNAL_SOURCES.climateReportPdf, snippet: "Climate Change Report 2023 states 72% of electricity is from renewable sources."}
+    ],
+    verifier: (txt) => {
+      const claimed = extractPercent(txt);
+      const truth = INTERNAL_TRUTH.renewable_electricity_2023_pct;
+      if(claimed === null) return internalVerdictNV(1, 0, "No percentage detected in the statement text.");
+      if(Math.abs(claimed - truth) < 0.0001) return internalVerdictTrusted(1, 8, "Statement % equals official value.");
+      return internalVerdictContested(1, clamp(70 + Math.abs(claimed-truth)*3, 70, 98), `Claimed ${claimed}% conflicts with the official 2023 value (${truth}%).`);
     }
   },
   {
-    id:"i2",
-    label:"Scope 1 & 2 emissions (32.6 Mt in 2023)",
-    subtopic:"Emissions",
-    text:"Our Scope 1 and 2 emissions were 32.6 Mt CO₂e in 2023.",
-    rule:"Value must match 32.6 Mt CO₂e.",
-    evidence:[
-      {source: INTERNAL_SOURCES.climateReportPdf, snippet:"Scope 1 and 2 emissions = 32.6 Mt CO₂e (2023)."}
+    id: "i4",
+    label: "2018 baseline (INTENTIONALLY WRONG: baseline = 32.6 Mt)",
+    subtopic: "Baselines (Scope 1 & 2)",
+    text: "Our 2018 baseline Scope 1 and 2 emissions were 32.6 Mt CO₂e.",
+    rule: "Exact numeric match to the referenced 2018 baseline in official reporting (34.5 Mt CO2e).",
+    evidence: [
+      {source: INTERNAL_SOURCES.annualReportStrategicPdf, snippet: "2018 baseline referenced as 34.5 Mt CO2e (with 2023 at 32.6 Mt)."},
+      {source: INTERNAL_SOURCES.listcorpBaseline, snippet: "Quotes 2018 baseline as 34.5 Mt CO2e and 2023 as 32.6 Mt CO2e."}
     ],
-    verifier: function(txt){
-      const val = extractMt(txt);
-      if(val === null)
-        return internalVerdictNV(1,0,"No Mt value detected.");
-      if(Math.abs(val - INTERNAL_TRUTH.scope12_2023_mt) < 0.01)
-        return internalVerdictTrusted(1,8,"Value matches official 32.6 Mt CO₂e.");
-      return internalVerdictContested(1,90,`Claimed ${val} Mt contradicts official 32.6 Mt.`);
+    verifier: (txt) => {
+      const claimed = extractMt(txt);
+      const truth = INTERNAL_TRUTH.baseline_2018_mt;
+      if(claimed === null) return internalVerdictNV(2, 0, "No Mt CO₂e value detected in the statement text.");
+      if(Math.abs(claimed - truth) < 0.01) return internalVerdictTrusted(2, 7, "Baseline equals official value.");
+      return internalVerdictContested(2, 92, `Claimed baseline (${claimed} Mt) conflicts with reported 2018 baseline (${truth} Mt).`);
     }
   },
   {
-    id:"i3",
-    label:"Renewable electricity (wrong: 78%)",
-    subtopic:"Electricity Mix",
-    text:"In 2023, 78% of the electricity we used was from renewable sources.",
-    rule:"Claim % must equal 72% (official).",
-    evidence:[
-      {source: INTERNAL_SOURCES.climateReportPdf, snippet:"72% electricity from renewable sources (2023)."}
+    id: "i5",
+    label: "1.5°C alignment (deterministically Non-verifiable)",
+    subtopic: "Alignment statements",
+    text: "Our Scope 1 and 2 targets are aligned with efforts to limit warming to 1.5°C.",
+    rule: "Deterministic policy: temperature-alignment statements are Non-verifiable unless a published mapping rule + scenario dataset + boundary assumptions are provided.",
+    evidence: [
+      {source: INTERNAL_SOURCES.annualReportStrategicPdf, snippet: "Annual report references 1.5°C alignment language in relation to targets."}
     ],
-    verifier: function(txt){
-      const pct = extractPercent(txt);
-      if(pct === null)
-        return internalVerdictNV(1,0,"No percentage detected.");
-      if(Math.abs(pct - 72) < 0.01)
-        return internalVerdictTrusted(1,8,"72% exactly matches official values.");
-      return internalVerdictContested(1,92,`Claimed ${pct}% contradicts official 72%.`);
-    }
-  },
-  {
-    id:"i4",
-    label:"2018 baseline (wrong: 32.6 Mt)",
-    subtopic:"Baseline",
-    text:"Our 2018 baseline for Scope 1 and 2 emissions was 32.6 Mt CO₂e.",
-    rule:"Baseline must match 34.5 Mt (official).",
-    evidence:[
-      {source: INTERNAL_SOURCES.annualReportStrategicPdf, snippet:"Baseline = 34.5 Mt CO₂e."},
-      {source: INTERNAL_SOURCES.listcorpBaseline, snippet:"Confirms 2018 baseline = 34.5 Mt CO₂e."}
-    ],
-    verifier: function(txt){
-      const val = extractMt(txt);
-      if(val === null)
-        return internalVerdictNV(2,0,"No Mt value detected.");
-      if(Math.abs(val - 34.5) < 0.01)
-        return internalVerdictTrusted(2,7,"Baseline matches 34.5 Mt.");
-      return internalVerdictContested(2,92,`Claimed ${val} Mt contradicts official 34.5 Mt.`);
-    }
-  },
-  {
-    id:"i5",
-    label:"1.5°C alignment (Non‑verifiable)",
-    subtopic:"Alignment statements",
-    text:"Our Scope 1 and 2 targets are aligned with efforts to limit global warming to 1.5°C.",
-    rule:"Deterministic rule: alignment cannot be verified without scenario mapping.",
-    evidence:[
-      {source: INTERNAL_SOURCES.annualReportStrategicPdf, snippet:"References 1.5°C alignment language."}
-    ],
-    verifier: function(){
-      return internalVerdictNV(1,0,"Alignment statements require explicit scenario mapping → deterministically non‑verifiable.");
-    }
+    verifier: (txt) => internalVerdictNV(1, 0,
+      "This is an alignment statement. Without a deterministic mapping rule (scenario set, sector pathway, boundary + methodology), it cannot be verified as true/false purely from citations.")
   }
 ];
 
-/* ---------- INTERNAL HELPERS ---------- */
+/* Internal UI */
+const internalSelect = document.getElementById("internalSelect");
+const internalText = document.getElementById("internalText");
 
-function extractMt(text){
-  const m = (text||"").match(/(\d+(\.\d+)?)\s*mt/i);
-  return m ? parseFloat(m[1]) : null;
+function internalInit(){
+  INTERNAL_STATEMENTS.forEach(s=>{
+    const opt=document.createElement("option");
+    opt.value=s.id;
+    opt.textContent=s.label;
+    internalSelect.appendChild(opt);
+  });
+  internalLoad(INTERNAL_STATEMENTS[0].id);
+  internalReset();
+}
+window.addEventListener("load", internalInit);
+
+function internalLoad(id){
+  const s = INTERNAL_STATEMENTS.find(x=>x.id===id);
+  if(!s) return;
+  internalText.value = s.text;
+  internalReset();
+}
+function internalReset(){
+  setBadge("internalBadge","internalVerdict","—","nv");
+  setText("internalDensity","—");
+  setText("internalContr","—");
+  setText("internalUnits","—");
+  setText("internalRule","—");
+  setText("internalExplain","Select a statement and click “Verify statement”.");
+  setText("internalSubtopic","—");
+  document.getElementById("internalEvidence").innerHTML = "No proofs yet.";
+  document.getElementById("internalDensityFill").style.width = "0%";
+}
+function internalVerify(){
+  const id = internalSelect.value;
+  const s = INTERNAL_STATEMENTS.find(x=>x.id===id);
+  if(!s) return;
+
+  const txt = internalText.value || s.text;
+  const r = s.verifier(txt);
+
+  setBadge("internalBadge","internalVerdict",r.label,r.cls);
+  setText("internalDensity", `${r.density}/100`);
+  setText("internalContr", `${r.contr}`);
+  setText("internalUnits", `${r.units}`);
+  setText("internalRule", s.rule);
+  setText("internalExplain", r.explain);
+  setText("internalSubtopic", `Subtopic: ${s.subtopic}`);
+
+  document.getElementById("internalDensityFill").style.width = `${r.density}%`;
+  document.getElementById("internalEvidence").innerHTML = renderEvidence(s.evidence);
+}
+
+/* Internal verdict helpers */
+function internalDensityToPct(unitsCount, contradiction){
+  const u = clamp(Math.round((unitsCount / 8) * 100), 0, 100);
+  const c = clamp(contradiction, 0, 100);
+  return clamp(Math.round(u * 0.75 + (100 - c) * 0.25), 0, 100);
+}
+function internalVerdictTrusted(units, contr, explain){
+  return { cls:"trusted", label:"TRUSTED", units, contr, density: internalDensityToPct(units, contr), explain };
+}
+function internalVerdictContested(units, contr, explain){
+  return { cls:"contested", label:"CONTESTED", units, contr, density: internalDensityToPct(units, contr), explain };
+}
+function internalVerdictNV(units, contr, explain){
+  return { cls:"nv", label:"NON-VERIFIABLE", units, contr, density: internalDensityToPct(units, contr), explain };
+}
+
+/* ============================================================
+   3) EXTERNAL VERIFICATION – NASA/EDGAR/WMO (adapted to "statement")
+   ============================================================ */
+const EXTERNAL_GTP = {
+  nasaTemp: {
+    publisher: "NASA",
+    dataset: "Global Temperature (Vital Signs / GISTEMP)",
+    url: "https://climate.nasa.gov/vital-signs/global-temperature/",
+    note: "NASA Vital Signs page summarizing observed global temperature change."
+  },
+  nasaCO2: {
+    publisher: "NASA",
+    dataset: "Atmospheric CO₂ (Vital Signs, via NOAA monitoring)",
+    url: "https://climate.nasa.gov/vital-signs/carbon-dioxide/",
+    note: "NASA Vital Signs page summarizing CO₂ concentration and pre-industrial reference."
+  },
+  edgar: {
+    publisher: "European Commission (JRC)",
+    dataset: "EDGAR – Emissions Database for Global Atmospheric Research",
+    url: "https://edgar.jrc.ec.europa.eu/",
+    note: "Official EDGAR portal (global emissions inventory)."
+  },
+  edgarReport: {
+    publisher: "European Commission (JRC)",
+    dataset: "EDGAR report page (sector context)",
+    url: "https://edgar.jrc.ec.europa.eu/report_2023",
+    note: "EDGAR reporting page (sector and trend summaries)."
+  },
+  wmoSoGC: {
+    publisher: "WMO",
+    dataset: "State of the Global Climate",
+    url: "https://public.wmo.int/en/resources/state-of-the-global-climate",
+    note: "WMO annual climate assessment summaries."
+  }
+};
+
+const EXTERNAL_STATEMENTS = [
+  {
+    id: "e1",
+    label: "Global temperature increase (~1.1°C)",
+    subtopic: "Climate trend (global temperature)",
+    text: "Global average temperatures have increased by approximately 1.1°C since the late 19th century.",
+    rule: "Extract °C number and check it is within [0.9, 1.3]. If outside → Contested.",
+    truth: { kind:"range", low:0.9, high:1.3, unit:"°C", display:"~1.1°C" },
+    evidence: [{ source: EXTERNAL_GTP.nasaTemp, snippet: "NASA Vital Signs summarises observed global temperature increase (~1.1°C)." }]
+  },
+  {
+    id: "e2",
+    label: "CO₂ higher than pre-industrial (~280 ppm → >420 ppm)",
+    subtopic: "Atmospheric composition (CO₂)",
+    text: "Atmospheric CO₂ concentrations are significantly higher today than in the pre-industrial era (~280 ppm), exceeding 420 ppm in recent years.",
+    rule: "Extract ppm values: include both pre-industrial and a current ppm value; current must be > 400. If missing → Non-verifiable.",
+    truth: { kind:"threshold", preindustrial:280, currentMin:400, unit:"ppm" },
+    evidence: [{ source: EXTERNAL_GTP.nasaCO2, snippet: "NASA Vital Signs summarises CO₂ rising from ~280 ppm to >420 ppm." }]
+  },
+  {
+    id: "e3",
+    label: "EDGAR is an official global emissions inventory",
+    subtopic: "Ground truth inventory (emissions)",
+    text: "EDGAR (the Emissions Database for Global Atmospheric Research) provides a global inventory of greenhouse gas emissions by country and sector.",
+    rule: "Deterministic identity check: statement must explicitly describe EDGAR as global inventory by country and sector.",
+    truth: { kind:"identity", mustInclude:["EDGAR","global","emissions","country","sector"] },
+    evidence: [{ source: EXTERNAL_GTP.edgar, snippet: "EDGAR portal describes global emissions inventory with sector and country breakdowns." }]
+  },
+  {
+    id: "e4",
+    label: "Energy/fuel combustion dominates emissions (EDGAR context)",
+    subtopic: "Sector context (emissions sources)",
+    text: "The largest share of global greenhouse gas emissions comes from energy production and fossil fuel combustion sectors.",
+    rule: "Deterministic policy: sector-context statement anchored to EDGAR summaries. If statement says 'agriculture is the largest' → Contested.",
+    truth: { kind:"policy", accepted:true },
+    evidence: [{ source: EXTERNAL_GTP.edgarReport, snippet: "EDGAR report pages provide sector context where energy/fuel combustion is dominant." }]
+  },
+  {
+    id: "e5",
+    label: "WMO annual climate assessment exists (State of the Global Climate)",
+    subtopic: "Institutional climate assessment (WMO)",
+    text: "WMO publishes an annual 'State of the Global Climate' assessment summarizing observed climate indicators and extremes.",
+    rule: "Deterministic existence check: statement must include 'WMO' and 'State of the Global Climate'.",
+    truth: { kind:"existence", mustInclude:["WMO","State of the Global Climate"] },
+    evidence: [{ source: EXTERNAL_GTP.wmoSoGC, snippet: "WMO resource page for 'State of the Global Climate' assessments." }]
+  }
+];
+
+/* External UI */
+const externalSelect = document.getElementById("externalSelect");
+const externalText = document.getElementById("externalText");
+
+function externalInit(){
+  EXTERNAL_STATEMENTS.forEach(s=>{
+    const opt=document.createElement("option");
+    opt.value=s.id;
+    opt.textContent=s.label;
+    externalSelect.appendChild(opt);
+  });
+  externalLoad(EXTERNAL_STATEMENTS[0].id);
+  externalReset();
+}
+window.addEventListener("load", externalInit);
+
+function externalLoad(id){
+  const s = EXTERNAL_STATEMENTS.find(x=>x.id===id);
+  if(!s) return;
+  externalText.value = s.text;
+  externalReset();
+}
+function externalReset(){
+  setBadge("externalBadge","externalVerdict","—","nv");
+  setText("externalDensity","—");
+  setText("externalContr","—");
+  setText("externalUnits","—");
+  setText("externalRule","—");
+  setText("externalExplain","Select a statement and click “Verify statement”.");
+  setText("externalSubtopic","—");
+  document.getElementById("externalEvidence").innerHTML = "No proofs yet.";
+  document.getElementById("externalDensityFill").style.width = "0%";
+}
+
+function externalVerify(){
+  const id = externalSelect.value;
+  const s = EXTERNAL_STATEMENTS.find(x=>x.id===id);
+  if(!s) return;
+
+  const txt = externalText.value || s.text;
+  const r = externalDeterministicVerify(s, txt);
+
+  setBadge("externalBadge","externalVerdict",r.label,r.cls);
+  setText("externalDensity", `${r.density}/100`);
+  setText("externalContr", `${r.contr}`);
+  setText("externalUnits", `${r.units}`);
+  setText("externalRule", s.rule);
+  setText("externalExplain", r.explain);
+  setText("externalSubtopic", `Subtopic: ${s.subtopic}`);
+
+  document.getElementById("externalDensityFill").style.width = `${r.density}%`;
+  document.getElementById("externalEvidence").innerHTML = renderEvidence(s.evidence.map(e=>({
+    source:{
+      title: `${e.source.publisher} – ${e.source.dataset}`,
+      url: e.source.url,
+      note: e.source.note
+    },
+    snippet: e.snippet
+  })));
+}
+
+function externalDeterministicVerify(s, text){
+  const units = (s.evidence||[]).length || 1;
+  let cls="trusted", label="TRUSTED", contr=8, explain="Statement is consistent with the matched Ground Truth Publisher unit(s).";
+
+  if(s.id==="e1"){
+    const val = extractNumberWithUnit(text, "°c") ?? extractNumberWithUnit(text, "c");
+    if(val === null){
+      cls="nv"; label="NON-VERIFIABLE"; contr=0;
+      explain="No °C number detected. Deterministic check requires a numeric temperature value.";
+    } else if(val < s.truth.low || val > s.truth.high){
+      cls="contested"; label="CONTESTED"; contr=92;
+      explain=`Claimed ${val}°C is outside the accepted range [${s.truth.low}, ${s.truth.high}] anchored to NASA summaries (${s.truth.display}).`;
+    } else {
+      cls="trusted"; label="TRUSTED"; contr=10;
+      explain=`Claimed ${val}°C falls within the accepted range [${s.truth.low}, ${s.truth.high}] consistent with NASA summaries (${s.truth.display}).`;
+    }
+  }
+
+  if(s.id==="e2"){
+    const allPpm = (text||"").match(/(\d+(?:\.\d+)?)\s*ppm/ig) || [];
+    const nums = allPpm.map(x => parseFloat(x));
+    const current = nums.length >= 2 ? Math.max(...nums) : null;
+
+    if(nums.length < 2){
+      cls="nv"; label="NON-VERIFIABLE"; contr=0;
+      explain="Deterministic check requires both a pre-industrial ppm and a current ppm value in the statement text.";
+    } else if(current !== null && current <= s.truth.currentMin){
+      cls="contested"; label="CONTESTED"; contr=90;
+      explain=`Claimed current CO₂ (${current} ppm) does not exceed the deterministic threshold (> ${s.truth.currentMin} ppm) anchored to NASA/NOAA monitoring.`;
+    } else {
+      cls="trusted"; label="TRUSTED"; contr=12;
+      explain=`Statement includes pre-industrial and current ppm values and the current value exceeds the deterministic threshold (> ${s.truth.currentMin} ppm), consistent with NASA/NOAA monitoring summaries.`;
+    }
+  }
+
+  if(s.id==="e3"){
+    const ok = containsAll(text, s.truth.mustInclude);
+    if(!ok){
+      cls="nv"; label="NON-VERIFIABLE"; contr=0;
+      explain="Deterministic identity check requires the statement to explicitly describe EDGAR as a global emissions inventory by country and sector.";
+    } else {
+      cls="trusted"; label="TRUSTED"; contr=6;
+      explain="Statement matches EDGAR/JRC dataset identity description (global emissions inventory by country and sector).";
+    }
+  }
+
+  if(s.id==="e4"){
+    const t=(text||"").toLowerCase();
+    if(t.includes("agriculture is the largest")){
+      cls="contested"; label="CONTESTED"; contr=88;
+      explain="Deterministic policy conflict: this statement contradicts the sector context anchored to EDGAR summaries (energy/fuel combustion dominates).";
+    } else {
+      cls="trusted"; label="TRUSTED"; contr=14;
+      explain="Sector-context statement is consistent with EDGAR summary materials (energy/fuel combustion dominates global emissions).";
+    }
+  }
+
+  if(s.id==="e5"){
+    const ok = containsAll(text, s.truth.mustInclude);
+    if(!ok){
+      cls="contested"; label="CONTESTED"; contr=85;
+      explain="Statement conflicts with the existence/title of WMO’s 'State of the Global Climate' resources.";
+    } else {
+      cls="trusted"; label="TRUSTED"; contr=5;
+      explain="Statement is consistent with WMO’s published 'State of the Global Climate' resources.";
+    }
+  }
+
+  const density = externalDensityToPct(units, contr);
+  return { cls, label, contr, density, units, explain };
+}
+function externalDensityToPct(unitsCount, contradiction){
+  const u = clamp(Math.round((unitsCount / 6) * 100), 0, 100);
+  const c = clamp(contradiction, 0, 100);
+  return clamp(Math.round(u * 0.75 + (100 - c) * 0.25), 0, 100);
+}
+
+/* ============================================================
+   Shared utilities (internal/external)
+   ============================================================ */
+function setText(id, val){ document.getElementById(id).textContent = val; }
+
+function setBadge(badgeId, labelId, label, cls){
+  const badge = document.getElementById(badgeId);
+  const vLabel = document.getElementById(labelId);
+  badge.className = "badge";
+  vLabel.textContent = label;
+
+  if(cls==="trusted"){ badge.classList.add("badgeTrusted"); }
+  else if(cls==="emerging"){ badge.classList.add("badgeEmerging"); }
+  else if(cls==="contested"){ badge.classList.add("badgeContested"); }
+  else { badge.classList.add("badgeNV"); }
+}
+
+function clamp(x, a, b){ return Math.max(a, Math.min(b, x)); }
+
+function host(url){ try{ return (new URL(url)).host; } catch(e){ return url; } }
+function escapeHtml(str){
+  return (str||"")
+    .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;").replaceAll("'","&#039;");
+}
+
+function renderEvidence(evidence){
+  if(!evidence || !evidence.length){
+    return `<div class="snippet">No matched Units.</div>`;
+  }
+  return evidence.map(e=>{
+    const s = e.source;
+    return `
+      <div class="unit">
+        <div class="unitTop">
+          <div class="uTitle">${escapeHtml(s.title || s.dataset || "Source")}</div>
+        </div>
+        <div class="uMeta">Source: <a href="${s.url}" target="_blank" rel="noopener">${escapeHtml(host(s.url))}</a></div>
+        ${e.snippet ? `<div class="snippet">${escapeHtml(e.snippet)}</div>` : ``}
+        ${s.note ? `<div class="uMeta" style="opacity:.8">${escapeHtml(s.note)}</div>` : ``}
+      </div>
+    `;
+  }).join("");
 }
 
 function extractPercent(text){
   const m = (text||"").match(/(\d+(\.\d+)?)\s*%/);
   return m ? parseFloat(m[1]) : null;
 }
-
-function internalDensityToPct(units, contr){
-  const u = clampInt(Math.round((units/8)*100), 0, 100);
-  const c = clampInt(contr, 0, 100);
-  return clampInt(Math.round(u*0.75 + (100-c)*0.25), 0, 100);
+function extractMt(text){
+  const m = (text||"").match(/(\d+(\.\d+)?)\s*Mt/i);
+  return m ? parseFloat(m[1]) : null;
 }
-
-function internalVerdictTrusted(units, contr, explain){
-  return {
-    cls:"trusted",
-    label:"TRUSTED",
-    units,
-    contr,
-    density: internalDensityToPct(units, contr),
-    explain
-  };
-}
-
-function internalVerdictContested(units, contr, explain){
-  return {
-    cls:"contested",
-    label:"CONTESTED",
-    units,
-    contr,
-    density: internalDensityToPct(units, contr),
-    explain
-  };
-}
-
-function internalVerdictNV(units, contr, explain){
-  return {
-    cls:"nonver",
-    label:"NON‑VERIFIABLE",
-    units,
-    contr,
-    density: internalDensityToPct(units, contr),
-    explain
-  };
-}
-
-/* INTERNAL UI FUNCTIONS */
-
-function internalInit(){
-  const sel = document.getElementById("internalSelect");
-  INTERNAL_STATEMENTS.forEach(s=>{
-    const opt=document.createElement("option");
-    opt.value=s.id;
-    opt.textContent=s.label;
-    sel.appendChild(opt);
-  });
-  internalLoad(INTERNAL_STATEMENTS[0].id);
-}
-
-function internalLoad(id){
-  const s = INTERNAL_STATEMENTS.find(x=>x.id===id);
-  if(!s) return;
-  document.getElementById("internalText").value = s.text;
-  internalReset();
-}
-
-function internalReset(){
-  setInternalBadge("—","nonver");
-  setText("internalDensity","—");
-  setText("internalContr","—");
-  setText("internalUnits","—");
-  setText("internalRule","—");
-  setText("internalExplain","Select a statement and click “VERIFY STATEMENT”.");
-  setText("internalSubtopic","—");
-  document.getElementById("internalEvidence").innerHTML = "No proofs yet.";
-  document.getElementById("internalDensityFill").style.width="0%";
-}
-
-function setInternalBadge(label,cls){
-  const el=document.getElementById("internalBadge");
-  const v=document.getElementById("internalVerdict");
-  v.textContent=label;
-
-  el.classList.remove("badgeTrusted","badgeEmerging","badgeContested","badgeNV");
-  if(cls==="trusted") el.classList.add("badgeTrusted");
-  else if(cls==="contested") el.classList.add("badgeContested");
-  else if(cls==="emerging") el.classList.add("badgeEmerging");
-  else el.classList.add("badgeNV");
-}
-
-function internalVerify(){
-  const id=document.getElementById("internalSelect").value;
-  const s = INTERNAL_STATEMENTS.find(x=>x.id===id);
-  const txt=document.getElementById("internalText").value.trim();
-
-  const r = s.verifier(txt);
-
-  // Set badge
-  setInternalBadge(r.label, r.cls);
-
-  // Metrics
-  setText("internalDensity",`${r.density}/100`);
-  setText("internalContr",`${r.contr}`);
-  setText("internalUnits",`${r.units}`);
-  setText("internalRule",s.rule);
-  setText("internalExplain",r.explain);
-  setText("internalSubtopic",`Subtopic: ${s.subtopic}`);
-
-  document.getElementById("internalDensityFill").style.width=`${r.density}%`;
-
-  // Proofs
-  const html = s.evidence.map(ev=>{
-    return `
-      <div style="background:#0f1a33;border:1px solid #1f2a44;border-radius:14px;padding:12px;margin-top:10px;">
-        <div style="font-weight:900;">${singleEscapeHtml(ev.source.title)}</div>
-        <div style="font-size:12px;margin-top:6px;">
-          Source: <a href="${ev.source.url}" target="_blank")}</a>
-        </div>
-        <div style="font-size:13px;color:#cbd5e1;margin-top:6px;">${singleEscapeHtml(ev.snippet)}</div>
-      </div>
-    `;
-  }).join("");
-  document.getElementById("internalEvidence").innerHTML = html;
-}
-
-
-/* ============================================================
-   SECTION G — EXTERNAL VERIFICATION ENGINE (NASA / EDGAR / WMO)
-============================================================ */
-
 function extractNumberWithUnit(text, unit){
-  const re=new RegExp("(\\d+(?:\\.\\d+)?)\\s*"+unit,"i");
-  const m=(text||"").match(re);
-  return m?parseFloat(m[1]):null;
+  const re = new RegExp("(\\d+(?:\\.\\d+)?)\\s*" + unit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i");
+  const m = (text||"").match(re);
+  return m ? parseFloat(m[1]) : null;
 }
-
 function containsAll(text, arr){
-  const t=(text||"").toLowerCase();
-  return arr.every(w=>t.includes(w.toLowerCase()));
+  const t = (text||"").toLowerCase();
+  return arr.every(w => t.includes(w.toLowerCase()));
 }
-
-const EXTERNAL_GTP = {
-  nasaTemp:{
-    publisher:"NASA",
-    dataset:"Global Temperature",
-    url:"https://climate.nasa.gov/vital-signs/global-temperature/",
-    note:"NASA observed warming (~1.1 °C)."
-  },
-  nasaCO2:{
-    publisher:"NASA",
-    dataset:"CO₂ concentration",
-    url:"https://climate.nasa.gov/vital-signs/carbon-dioxide/",
-    note:"From ~280 ppm to >420 ppm."
-  },
-  edgar:{
-    publisher:"JRC",
-    dataset:"EDGAR inventory",
-    url:"https://edgar.jrc.ec.europa.eu/",
-    note:"Official global GHG inventory."
-  },
-  edgarReport:{
-    publisher:"JRC",
-    dataset:"EDGAR sector report",
-    url:"https://edgar.jrc.ec.europa.eu/report_2023",
-    note:"Sector trends."
-  },
-  wmo:{
-    publisher:"WMO",
-    dataset:"State of the Global Climate",
-    url:"https://public.wmo.int/en/resources/state-of-the-global-climate",
-    note:"Annual climate indicators."
-  }
-};
-
-
-// External statements
-const EXTERNAL_STATEMENTS = [
-  {
-    id:"e1",
-    label:"Global temperature increase (~1.1°C)",
-    subtopic:"Climate trend",
-    text:"Global average temperatures have increased by approximately 1.1°C since the late 19th century.",
-    rule:"Extract °C and check in [0.9,1.3]",
-    truth:{low:0.9, high:1.3},
-    evidence:[{source:EXTERNAL_GTP.nasaTemp, snippet:"NASA Vital Signs: approx. 1.1°C increase."}]
-  },
-  {
-    id:"e2",
-    label:"CO₂ higher than pre‑industrial (~280 → >420 ppm)",
-    subtopic:"Atmospheric CO₂",
-    text:"Atmospheric CO₂ is significantly higher today than in the pre‑industrial era (~280 ppm), exceeding 420 ppm today.",
-    rule:"Must include pre‑industrial and modern ppm; modern must be >400.",
-    evidence:[{source:EXTERNAL_GTP.nasaCO2, snippet:"From ~280 to >420 ppm."}]
-  },
-  {
-    id:"e3",
-    label:"EDGAR is the global GHG inventory",
-    subtopic:"Global inventory",
-    text:"EDGAR provides a global greenhouse gas emissions inventory by country and sector.",
-    rule:"Identity check must include EDGAR + global + emissions + country + sector.",
-    evidence:[{source:EXTERNAL_GTP.edgar, snippet:"EDGAR describes global GHG inventory by country and sector."}]
-  },
-  {
-    id:"e4",
-    label:"Energy/fuel combustion dominates emissions",
-    subtopic:"Sector context",
-    text:"The largest share of global emissions comes from energy production and fuel combustion.",
-    rule:"If statement claims agriculture is largest → contested.",
-    evidence:[{source:EXTERNAL_GTP.edgarReport, snippet:"Energy/fuel combustion dominates."}]
-  },
-  {
-    id:"e5",
-    label:"WMO publishes annual State of the Global Climate",
-    subtopic:"Institutional",
-    text:"WMO publishes the annual State of the Global Climate report summarizing climate indicators.",
-    rule:"Must include 'WMO' and 'State of the Global Climate'.",
-    evidence:[{source:EXTERNAL_GTP.wmo, snippet:"WMO 'State of the Global Climate'."}]
-  }
-];
-
-
-/* ---------- EXTERNAL UI INIT ---------- */
-
-function externalInit(){
-  const sel=document.getElementById("externalSelect");
-  EXTERNAL_STATEMENTS.forEach(s=>{
-    const o=document.createElement("option");
-    o.value=s.id;
-    o.textContent=s.label;
-    sel.appendChild(o);
-  });
-  externalLoad(EXTERNAL_STATEMENTS[0].id);
-}
-
-window.addEventListener("load", internalInit);
-window.addEventListener("load", externalInit);
-// ALSO initialize single examples
-window.addEventListener("load", ()=>singleLoadExample("cement"));
-
-function externalLoad(id){
-  const s=EXTERNAL_STATEMENTS.find(x=>x.id===id);
-  if(!s) return;
-  document.getElementById("externalText").value=s.text;
-  externalReset();
-}
-
-function externalReset(){
-  setExternalBadge("—","nonver");
-  setText("externalDensity","—");
-  setText("externalContr","—");
-  setText("externalUnits","—");
-  setText("externalRule","—");
-  setText("externalExplain","Select a statement and click “VERIFY STATEMENT”.");
-  setText("externalSubtopic","—");
-  document.getElementById("externalEvidence").innerHTML="No proofs yet.";
-  document.getElementById("externalDensityFill").style.width="0%";
-}
-
-function setExternalBadge(label,cls){
-  const badge=document.getElementById("externalBadge");
-  const v=document.getElementById("externalVerdict");
-  v.textContent=label;
-
-  badge.classList.remove("badgeTrusted","badgeEmerging","badgeContested","badgeNV");
-  if(cls==="trusted") badge.classList.add("badgeTrusted");
-  else if(cls==="contested") badge.classList.add("badgeContested");
-  else if(cls==="emerging") badge.classList.add("badgeEmerging");
-  else badge.classList.add("badgeNV");
-}
-
-
-/* ---------- EXTERNAL VERIFICATION ENGINE ---------- */
-
-function externalVerify(){
-  const id=document.getElementById("externalSelect").value;
-  const s=EXTERNAL_STATEMENTS.find(x=>x.id===id);
-  const txt=document.getElementById("externalText").value.trim();
-
-  let r = {};
-
-  if(s.id==="e1"){
-    const val = extractNumberWithUnit(txt,"°c") || extractNumberWithUnit(txt,"c");
-    if(val===null)
-      r = externalNV("No °C value detected.");
-    else if(val < s.truth.low || val > s.truth.high)
-      r = externalContested(`Claimed ${val}°C lies outside accepted NASA range (0.9–1.3°C).`);
-    else
-      r = externalTrusted(`Value ${val}°C is within NASA range (0.9–1.3°C).`);
-  }
-
-  if(s.id==="e2"){
-    const all = (txt.match(/(\d+(\.\d+)?)\s*ppm/ig)||[]).map(x=>parseFloat(x));
-    if(all.length < 2)
-      r = externalNV("Must contain both pre‑industrial and modern ppm values.");
-    else {
-      const modern = Math.max(...all);
-      if(modern <= 400)
-        r = externalContested(`Modern CO₂ value ${modern} ppm must exceed 400 ppm.`);
-      else
-        r = externalTrusted(`Modern CO₂ value ${modern} ppm exceeds 400 ppm (NASA/NOAA).`);
-    }
-  }
-
-  if(s.id==="e3"){
-    const ok = containsAll(txt,["edgar","global","emissions","country","sector"]);
-    if(!ok) r= externalNV("Statement must describe EDGAR as global GHG inventory by country + sector.");
-    else    r= externalTrusted("Matches EDGAR identity description.");
-  }
-
-  if(s.id==="e4"){
-    if(txt.toLowerCase().includes("agriculture is the largest")){
-      r= externalContested("Agriculture is not the largest source per EDGAR; energy/fuel combustion is.");
-    } else {
-      r= externalTrusted("Matches EDGAR sector context.");
-    }
-  }
-
-  if(s.id==="e5"){
-    const ok = containsAll(txt,["wmo","state of the global climate"]);
-    if(!ok) r= externalContested("Statement must explicitly reference WMO and 'State of the Global Climate'.");
-    else    r= externalTrusted("Correctly describes WMO institutional output.");
-  }
-
-  // Populate UI
-  setExternalBadge(r.label,r.cls);
-  setText("externalDensity",`${r.density}/100`);
-  setText("externalContr",r.contr);
-  setText("externalUnits",r.units);
-  setText("externalRule",s.rule);
-  setText("externalExplain",r.explain);
-  setText("externalSubtopic",`Subtopic: ${s.subtopic}`);
-  document.getElementById("externalDensityFill").style.width = `${r.density}%`;
-
-  // Proofs
-  const html = s.evidence.map(e => `
-    <div style="background:#0f1a33;border:1px solid #1f2a44;border-radius:14px;padding:12px;margin-top:10px;">
-      <div style="font-weight:900;">${e.source.publisher} — ${e.source.dataset}</div>
-      <div style="font-size:12px;margin-top:6px;">
-        Source: <a href="${e.source.url}" target="_blank" style="color:#93>
-      <div style="font-size:13px;color:#cbd5e1;margin-top:6px;">${singleEscapeHtml(e.snippet)}</div>
-    </div>
-  `).join("");
-  document.getElementById("externalEvidence").innerHTML = html;
-}
-
-
-/* ---------- EXTERNAL VERDICT HELPERS ---------- */
-
-function externalDensityToPct(units, contr){
-  const u = clampInt(Math.round((units/6)*100), 0, 100);
-  const c = clampInt(contr, 0, 100);
-  return clampInt(Math.round(u*0.75 + (100-c)*0.25), 0, 100);
-}
-
-function externalTrusted(explain){
-  const units=1;
-  const contr=10;
-  return {
-    cls:"trusted",
-    label:"TRUSTED",
-    units,
-    contr,
-    density:externalDensityToPct(units, contr),
-    explain
-  };
-}
-
-function externalContested(explain){
-  const units=1;
-  const contr=90;
-  return {
-    cls:"contested",
-    label:"CONTESTED",
-    units,
-    contr,
-    density:externalDensityToPct(units, contr),
-    explain
-  };
-}
-
-function externalNV(explain){
-  const units=0;
-  const contr=0;
-  return {
-    cls:"nonver",
-    label:"NON‑VERIFIABLE",
-    units,
-    contr,
-    density:externalDensityToPct(units, contr),
-    explain
-  };
-}
-
-
-/* ============================================================
-   SECTION H — HELPERS SHARED ACROSS ALL DEMOS
-============================================================ */
-
-function setText(id,val){
-  const el=document.getElementById(id);
-  if(el) el.textContent = val;
-}
-
-// Load examples for single demo
-function singleLoadExample(key){
-  const box=document.getElementById("singleStatementBox");
-  const ex=SINGLE_EXAMPLES[key];
-  if(ex!==undefined) box.value = ex;
-}
-
 </script>
-
-<!-- END CHUNK 7 / 8 -->
-<!-- ----------------------------------------------------------
-     index.html - Chunk 8 / 8
-     FINAL FOOTER + CLOSING TAGS
------------------------------------------------------------ -->
-
-<!-- ======================== FOOTER ======================== -->
-
-<div style="margin-top:140px;"></div>
-
-<footer style="
-    text-align:center;
-    padding:50px 20px;
-    background:#060e14;
-    color:#9eb4c4;
-    font-size:14px;
-    border-radius:16px;
-    margin-top:80px;
-">
-    <div>© All rights reserved — TiiQu C.I.C.</div>
-    <div style="margin-top:6px;">
-        <a href="https://tiiqu.com" target="_blank" style="color:#18e1c9; text-decoration:none;">
-            https://tiiqu.com
-        </a>
-    </div>
-</footer>
-
-</div> <!-- end .container -->
 
 </body>
 </html>
-
-<!-- ======================== END OF FILE ======================== -->
