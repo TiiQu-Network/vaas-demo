@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>VaaS Demo – Statement Verification (Single → Internal → External)</title>
+<title>VAAS – Verification As A Service - demo</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,8 +81,17 @@
     font-weight:800;
     font-size:42px;
     line-height:1.08;
-    letter-spacing:-.02em;
+    letter-spacing:.04em;
     color:var(--dark);
+  }
+
+  .heroSubtitle{
+    margin-top:10px;
+    font-size:18px;
+    line-height:1.5;
+    font-weight:700;
+    color:#5f7280;
+    font-family: Nunito, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
   }
 
   h2{
@@ -748,7 +757,8 @@
 
     <div class="header">
       <div class="eyebrow"><span class="eyebrowDot"></span>Corporate verification demo</div>
-      <h1 style="margin-top:18px;">VaaS – Verification-as-a-Service Demo</h1>
+      <h1 style="margin-top:18px;">VAAS</h1>
+      <div class="heroSubtitle">Verification As A Service - demo</div>
       <p class="p">
         This page demonstrates how VaaS returns a <strong>deterministic</strong> verdict for sustainability statements,
         with provenance (DOI/URL). The demos progress from <strong>single-statement verification</strong> to
@@ -757,7 +767,6 @@
 
       <div class="ctaRow">
         <a class="btn btnPrimary" href="https://docs.google.com/forms/d/e/1FAIpQLScu_yfVmdW7kquSD2Ntjvwr0siTMkG4T3DZAw6BLQlmpLfJag/viewform?usp=header">Request pilot access</a>
-        <a class="btn btnGhost" href="https://tiiqu.com/vaas-test" target="_blank" rel="noopener">Open demo on tiiqu.com</a>
       </div>
 
       <div class="topCard">
@@ -787,7 +796,6 @@
             <div class="chipRow">
               <div class="chip"><span class="chipDot"></span>Trusted / Emerging / Contested / Non-verifiable</div>
               <div class="chip"><span class="chipDot"></span>Provenance with DOI/URL</div>
-              <div class="chip"><span class="chipDot"></span>Portable GitHub/Wix HTML</div>
             </div>
             <div class="small" style="margin-top:14px;">
               In a pilot, external Ground Truth Publishers can include NASA, EDGAR/JRC, WMO, and official regulatory sources,
